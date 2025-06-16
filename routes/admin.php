@@ -17,7 +17,6 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
 
 
     Route::middleware('auth:web', 'permission:admin access')->group(function () {
-
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('travel', TravelController::class);
         Route::resource('passenger', PasenggerController::class);
