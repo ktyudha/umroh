@@ -29,12 +29,13 @@ class TravelController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string'],
             'quota' => ['required', 'integer', 'min:0'],
             'car_id' => ['required', 'exists:cars,id'],
             'departure_date' => ['required', 'date'],
-            'departure_time' => ['required', 'date_format:H:i'], // Format 24jam
+            'departure_time' => ['required'], // Format 24jam
         ]);
 
         $travel = new Travel($request->all());

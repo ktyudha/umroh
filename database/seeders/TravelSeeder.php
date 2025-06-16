@@ -20,7 +20,7 @@ class TravelSeeder extends Seeder
 
         $travels = [
             [
-                'code' => '0001',
+                // 'code' => '0001',
                 'name' => 'Surabaya - Malang',
                 'quota' => 10,
                 'departure_date' => now()->addDay(1),
@@ -28,7 +28,7 @@ class TravelSeeder extends Seeder
                 'car_id' => $cars->first()->id,
             ],
             [
-                'code' => '0002',
+                // 'code' => '0002',
                 'name' => 'Malang - Surabaya',
                 'quota' => 15,
                 'departure_date' => now()->addDay(2),
@@ -36,7 +36,7 @@ class TravelSeeder extends Seeder
                 'car_id' => $cars->skip(1)->first()->id,
             ],
             [
-                'code' => '0003',
+                // 'code' => '0003',
                 'name' => 'Surabaya - Batu',
                 'quota' => 20,
                 'departure_date' => now()->addDay(3),

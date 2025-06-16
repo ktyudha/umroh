@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('travel', function (Blueprint $table) {
             $table->id();
             $table->foreignId('car_id')->constrained()->onDelete('cascade');
-            $table->string('code', 4)->unique();
+            // $table->string('code', 4)->unique();
             $table->string('name');
             $table->integer('quota');
             $table->date('departure_date');

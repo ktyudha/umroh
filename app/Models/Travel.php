@@ -15,7 +15,9 @@ class Travel extends Model
         'code',
         'seat',
         'quota',
+        'car_id',
         'departure_date',
+        'departure_time'
     ];
 
     public function sluggable(): array

@@ -32,20 +32,23 @@ class PasenggerController extends Controller
         $request->validate([
             'passenger' => ['required', 'string'],
             'travel_id' => ['required', 'exists:travel,id'],
-            'pickup_location' => ['required', 'exists:travel,id'],
+            'pickup_location' => ['required'],
         ]);
 
         $parsePassenger = parsePassenger($request->passenger);
         $code = Pasengger::generateBookingCode($request->travel_id);
 
-        $passenger = new Pasengger([
+        $payload = [
             'code' => $code,
             'name' => $parsePassenger['name'],
             'age' => $parsePassenger['age'],
             'city' => $parsePassenger['city'],
             'travel_id' => $request->travel_id,
-        ]);
+            'pickup_location' => $request->pickup_location,
+            'whatsapp' => $request->whatsapp
+        ];
 
+        $passenger = new Pasengger($payload);
         $passenger->save();
 
         return redirect()->back()->with(['status' => 'success', 'message' => 'Data penumpang berhasil disimpan']);
