@@ -3,7 +3,7 @@
         <div class="grid grid-cols-4 gap-7">
             <div class="bg-gray-100 p-4 rounded-lg"> 
                 <h5 class="text-sm">Total Bookings</h5>
-                <span class="text-3xl font-semibold">28.345</span>
+                <span class="text-3xl font-semibold">{{ $passenger_count }}</span>
             </div>
             <div class="bg-gray-100 p-4 rounded-lg"> 
                 <h5 class="text-sm">Pending Aproval</h5>
