@@ -60,16 +60,16 @@
                     </label>
                     <textarea type="text" id="message" name="message"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Message" required>{{ old('message') ?: @$model['message'] }}</textarea>
+                        placeholder="Message" required>{{ old('message') ?: @$setting->message }}</textarea>
                 </div>
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Address
                         <small class="text-red-500 font-bold">*</small>
                     </label>
-                    <textarea type="text" id="address" name="address"
+                    <textarea type="text" name="address" id="address"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Address" required>{{ old('address') ?: @$model['address'] }}</textarea>
+                        placeholder="Address" required>{{ old('address') ?: @$setting->address }}</textarea>
                 </div>
             </div>
             <div>
@@ -77,7 +77,7 @@
                     Google Maps
                     <small class="text-red-500 font-bold">*</small>
                 </label>
-                <textarea type="text" id="address" name="address"
+                <textarea type="text" name="gmaps" id="gmaps"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="<iframe src=https://www.google.com/maps/> </iframe>" required>{{ old('gmaps') ?: @$setting->gmaps }}</textarea>
             </div>

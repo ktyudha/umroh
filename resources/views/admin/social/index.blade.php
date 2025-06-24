@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($models as $model)
+                @foreach ($models as $key => $model)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <td class="px-6 py-4">
                             <h5 class="font-medium text-black dark:text-white">{{ $model['title'] }}</h5>
