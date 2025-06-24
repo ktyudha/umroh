@@ -20,6 +20,8 @@ class DashboardController extends Controller
 
         $data['passenger_count'] = Pasengger::count();
 
+
+
         return view('admin.dashboard.index', $data);
     }
 }

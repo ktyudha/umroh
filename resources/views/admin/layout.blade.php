@@ -9,7 +9,7 @@
 
 <body>
 
-     {{-- @include('admin.partials.navbar')  --}}
+    {{-- @include('admin.partials.navbar')  --}}
 
     @include('admin.partials.sidebar')
 

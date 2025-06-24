@@ -32,7 +32,7 @@ class PermissionsSeeder extends Seeder
         }
 
         $adminAccessPermission = Permission::create(['name' => 'admin access']);
-        $adminRole = Role::whereName('admin')->first();
+        $adminRole = Role::whereName('superadmin')->first();
         $adminRole->givePermissionTo($adminAccessPermission);
 
         $writerRole = Role::whereName('writer')->first();
