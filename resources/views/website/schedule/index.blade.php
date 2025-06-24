@@ -1,6 +1,6 @@
 @extends('website.layout')
 
-@section('title', 'FAQ')
+@section('title', 'Jadwal')
 
 @section('content')
     <section class="schedule-section my-28">

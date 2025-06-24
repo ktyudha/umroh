@@ -1,6 +1,6 @@
 @extends('website.layout')
 
-@section('title', 'FAQ')
+@section('title', 'Persyaratan')
 
 @section('content')
     <section class="requirements-section my-28">

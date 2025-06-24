@@ -1,6 +1,6 @@
 @extends('website.layout')
 
-@section('title', 'FAQ')
+@section('title', 'Pendaftaran')
 
 @section('content')
     <section class="registration-section my-28">

@@ -1,6 +1,6 @@
 @extends('website.layout')
 
-@section('title', 'FAQ')
+@section('title', 'Contact')
 
 @section('content')
     <section class="contact-section my-28">
