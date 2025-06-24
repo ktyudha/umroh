@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Inbox\InboxController;
 use App\Http\Controllers\Admin\Pasengger\PasenggerController;
 use App\Http\Controllers\Admin\Travel\TravelController;
 use App\Http\Controllers\Admin\User\PermissionController;
@@ -26,6 +27,9 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('roles/{role}/permissions', PermissionController::class);
+
+        // Inbox
+        Route::resource('inboxes', InboxController::class);
 
         Route::resource('travel', TravelController::class);
         Route::resource('passenger', PasenggerController::class);

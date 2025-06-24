@@ -61,7 +61,8 @@
 
                 <div class="contact-form">
                     <h3>Kirim Pesan</h3>
-                    <form>
+                    <form role="form" method="post" action="{{ route('contact.store') }}">
+                        {{ csrf_field() }}
                         <div class="form-group">
                             <label for="name">Nama Lengkap</label>
                             <input type="text" id="name" name="name" required>

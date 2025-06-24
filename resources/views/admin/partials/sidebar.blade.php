@@ -73,9 +73,22 @@
                     <span class="ms-3">Dashboard</span>
                 </a>
             </li>
+            @if (auth()->user()->hasAnyPermission(['inboxes read']) or auth()->user()->hasRole('superadmin'))
+                <li class="text-gray-400 capitalize">Management</li>
+                @can('inboxes read')
+                    <li>
+                        <a href="{{ route('admin.inboxes.index') }}"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <i
+                                class="fa-solid fa-inbox shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Inboxes</span>
+                        </a>
+                    </li>
+                @endcan
+            @endif
 
             @if (auth()->user()->hasAnyPermission(['users read']) or auth()->user()->hasRole('superadmin'))
-                {{-- <li class="text-gray-400 capitalize">Profile</li> --}}
+                <li class="text-gray-400 capitalize">Profile</li>
                 @can('users read')
                     <li>
                         <a href="{{ route('admin.users.index') }}"

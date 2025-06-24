@@ -1,5 +1,5 @@
 {{-- Vite --}}
-@vite(['resources/css/app.css', 'resources/js/app.js'])
+{{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
 
 <link rel="stylesheet" href="{{ asset('static/website/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('static/website/css/responsive.css') }}">

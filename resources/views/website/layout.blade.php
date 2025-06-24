@@ -11,7 +11,9 @@
 
     @include('website.partials.navbar')
 
-    @yield('content')
+    <div style="margin-top: 70px;">
+        @yield('content')
+    </div>
 
     @include('website.partials.footer')
     @include('website.partials.scripts')
