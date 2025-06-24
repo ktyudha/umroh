@@ -144,11 +144,11 @@
                                     'name' => 'pilgrimage-batch',
                                     'route' => 'admin.pilgrimage-batch.index',
                                 ],
-                                [
-                                    'label' => 'Schedule',
-                                    'name' => 'pilgrimage-schedule',
-                                    'route' => 'admin.pilgrimage-type.index',
-                                ],
+                                // [
+                                //     'label' => 'Schedule',
+                                //     'name' => 'pilgrimage-schedule',
+                                //     'route' => 'admin.pilgrimage-type.index',
+                                // ],
                             ];
 
                         @endphp

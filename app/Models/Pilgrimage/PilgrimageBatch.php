@@ -14,11 +14,19 @@ class PilgrimageBatch extends Model
         'name',
         'slug',
         'description',
+        'pilgrimage_type_id',
         'departure_date',
         'return_date',
         'duration',
         'price',
+        'quota',
+        'status',
     ];
+
+    public function PilgrimageType()
+    {
+        return $this->belongsTo(PilgrimageType::class);
+    }
 
     public function sluggable(): array
     {

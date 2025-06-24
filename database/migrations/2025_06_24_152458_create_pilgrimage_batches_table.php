@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pilgrimage_batches', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('pilgrimage_type_id')->constrained('pilgrimage_types')->onDelete('cascade');
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
@@ -20,6 +21,8 @@ return new class extends Migration
             $table->dateTime('return_date')->nullable();
             $table->integer('duration')->nullable()->default(0);
             $table->unsignedBigInteger('price');
+            $table->integer('quota')->default(0);
+            $table->enum('status', ['sold', 'available', 'pending'])->default('available');
             $table->timestamps();
         });
     }

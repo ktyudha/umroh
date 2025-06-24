@@ -8,12 +8,20 @@
             <h2>Jadwal Keberangkatan Haji & Umrah</h2>
 
             <div class="tabs">
-                <button class="tab-btn active" data-tab="haji">Jadwal Haji</button>
-                <button class="tab-btn" data-tab="umrah">Jadwal Umrah</button>
+                @foreach ($types as $key => $type)
+                    <button class="tab-btn {{ $key == 0 ? 'active' : '' }}" data-tab="{{ $type->slug }}">Jadwal
+                        {{ $type->name }}</button>
+                @endforeach
+                {{-- @foreach ($types as $key => $type)
+                    <a href="{{ route('schedule.index', ['type' => $type->slug]) }}"
+                        class="tab-btn {{ $key == 0 ? 'active' : '' }}" data-tab="{{ $type->slug }}">
+                        Jadwal {{ $type->name }}
+                    </a>
+                @endforeach --}}
             </div>
 
             <div class="tab-content active" id="haji">
-                <h3>Jadwal Keberangkatan Haji Tahun 2024</h3>
+                <h3>Jadwal Keberangkatan Haji Tahun {{ now()->year }}</h3>
 
                 <div class="schedule-table">
                     <table>
@@ -28,30 +36,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Gelombang 1</td>
-                                <td>15 Mei 2024</td>
-                                <td>25 Juni 2024</td>
-                                <td>150 orang</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Gelombang 2</td>
-                                <td>1 Juni 2024</td>
-                                <td>10 Juli 2024</td>
-                                <td>150 orang</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Gelombang 3</td>
-                                <td>15 Juni 2024</td>
-                                <td>25 Juli 2024</td>
-                                <td>150 orang</td>
-                                <td class="full">Habis</td>
-                            </tr>
+                            @foreach ($schedulesHaji as $key => $schedule)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $schedule->name }}</td>
+                                    <td>{{ parseDate($schedule->departure_date) }}</td>
+                                    <td>{{ parseDate($schedule->return_date) }}</td>
+                                    <td>{{ $schedule->quota }} orang</td>
+                                    <td class="{{ $schedule->status }}">
+                                        {{ match ($schedule->status) {
+                                            'available' => 'Tersedia',
+                                            'sold' => 'Habis',
+                                            default => 'Pending',
+                                        } }}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -67,8 +67,8 @@
                 </div>
             </div>
 
-            <div class="tab-content" id="umrah">
-                <h3>Jadwal Keberangkatan Umrah Tahun 2024</h3>
+            <div class="tab-content" id="umroh">
+                <h3>Jadwal Keberangkatan Umrah Tahun {{ now()->year }}</h3>
 
                 <div class="schedule-table">
                     <table>
@@ -83,46 +83,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Umrah Reguler</td>
-                                <td>10 Januari 2024</td>
-                                <td>12 Hari</td>
-                                <td>Rp 28.500.000</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Umrah Plus Turki</td>
-                                <td>25 Januari 2024</td>
-                                <td>15 Hari</td>
-                                <td>Rp 35.000.000</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Umrah Premium</td>
-                                <td>5 Februari 2024</td>
-                                <td>12 Hari</td>
-                                <td>Rp 32.000.000</td>
-                                <td class="full">Habis</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Umrah Reguler</td>
-                                <td>20 Februari 2024</td>
-                                <td>12 Hari</td>
-                                <td>Rp 28.500.000</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Umrah Plus Dubai</td>
-                                <td>10 Maret 2024</td>
-                                <td>15 Hari</td>
-                                <td>Rp 37.000.000</td>
-                                <td class="available">Tersedia</td>
-                            </tr>
+                            @foreach ($schedulesUmroh as $key => $schedule)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $schedule->name }}</td>
+                                    <td>{{ parseDate($schedule->departure_date) }}</td>
+                                    <td>{{ $schedule->duration }} Hari</td>
+                                    <td>{{ formatRupiah($schedule->price) }}</td>
+                                    <td class="{{ $schedule->status }}">
+                                        {{ match ($schedule->status) {
+                                            'available' => 'Tersedia',
+                                            'sold' => 'Habis',
+                                            default => 'Pending',
+                                        } }}
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

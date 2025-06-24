@@ -86,6 +86,26 @@
                     </div>
 
                 </div> --}}
+
+                <div>
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Pilgrimage Type
+                        <small class="text-red-500 font-bold">*</small>
+                    </label>
+                    <div>
+                        <select id="type" name="pilgrimage_type_id"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option disabled @if (!old('pilgrimage_type_id')) selected @endif>Choose a type</option>
+                            @foreach ($pilgrimageTypes as $key => $type)
+                                <option value="{{ $type->id }}" {{ @$model->pilgrimage_type_id ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                </div>
+
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Price <span class="italic font-light text-xs">(ex:120000) without "." or ","</span>
@@ -94,6 +114,60 @@
                     <input type="text" id="price" name="price"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Price of pilgrimage batch" value="{{ old('price') ?: @$model->price }}" required />
+                </div>
+
+                <div>
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Quota
+                        <small class="text-red-500 font-bold">*</small>
+                    </label>
+                    <input type="number" id="quota" min="0" name="quota"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Quota of pilgrimage batch" value="{{ old('quota') ?: $model->quota }}" required />
+                </div>
+                <div>
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Status
+                        <small class="text-red-500 font-bold">*</small>
+                    </label>
+                    <div class="grid grid-cols-3">
+                        {{-- <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
+                            <input id="bordered-radio-1" type="radio" value="" name="status"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="bordered-radio-1"
+                                class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Default
+                                radio</label>
+                        </div>
+                        <div class="flex items-center ps-4 border border-gray-200 rounded-sm dark:border-gray-700">
+                            <input checked id="bordered-radio-2" type="radio" value="" name="status"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="bordered-radio-2"
+                                class="w-full py-4 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Checked
+                                state</label>
+                        </div> --}}
+
+                        <div class="flex items-center">
+                            <input @if ($model->status == 'available') checked @endif id="radio-available" type="radio"
+                                value="available" name="status"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="radio-available"
+                                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Available</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="radio-pending" @if ($model->status == 'pending') checked @endif type="radio"
+                                value="pending" name="status"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="radio-pending"
+                                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Pending</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="radio-sold" @if ($model->status == 'sold') checked @endif type="radio"
+                                value="sold" name="status"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="radio-sold"
+                                class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Sold</label>
+                        </div>
+                    </div>
                 </div>
             </div>
 

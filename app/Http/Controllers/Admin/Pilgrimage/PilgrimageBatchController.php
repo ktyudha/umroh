@@ -34,7 +34,8 @@ class PilgrimageBatchController extends Controller
      */
     public function create()
     {
-        return view('admin.pilgrimage-batch.create');
+        $data['pilgrimageTypes'] = PilgrimageType::all();
+        return view('admin.pilgrimage-batch.create', $data);
     }
 
     /**
@@ -45,9 +46,12 @@ class PilgrimageBatchController extends Controller
         $request->validate([
             'name' => 'required|max:250',
             'description'  => 'nullable|string',
+            'pilgrimage_type_id'  => 'required|exists:pilgrimage_types,id',
             'departure_date'  => 'required|date',
             'return_date' => 'required|date|after_or_equal:departure_date',
-            'price' => 'required|numeric|min:0'
+            'price' => 'required|numeric|min:0',
+            'quota'  => 'required|integer|min:0',
+            'status' => 'required|in:sold,available,pending',
         ]);
 
         $social = new PilgrimageBatch($request->all());
@@ -72,6 +76,7 @@ class PilgrimageBatchController extends Controller
     public function edit(PilgrimageBatch $pilgrimageBatch)
     {
         $data['model'] = $pilgrimageBatch;
+        $data['pilgrimageTypes'] = PilgrimageType::all();
         return view('admin.pilgrimage-batch.edit', $data);
     }
 
@@ -83,9 +88,12 @@ class PilgrimageBatchController extends Controller
         $request->validate([
             'name' => 'required|max:250',
             'description'  => 'nullable|string',
+            'pilgrimage_type_id'  => 'required|exists:pilgrimage_types,id',
             'departure_date'  => 'required|date',
             'return_date' => 'required|date|after_or_equal:departure_date',
-            'price' => 'required|numeric|min:0'
+            'price' => 'required|numeric|min:0',
+            'quota'  => 'required|integer|min:0',
+            'status' => 'required|in:sold,available,pending',
         ]);
 
         $pilgrimageBatch->update($request->all());

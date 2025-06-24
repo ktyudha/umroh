@@ -28,6 +28,20 @@ if (!function_exists('parsePassenger')) {
     }
 }
 
+if (!function_exists('parseDate')) {
+    function parseDate($tgl)
+    {
+        return Carbon::parse($tgl)->translatedFormat('l, d F Y');
+    }
+}
+
+if (!function_exists('formatRupiah')) {
+    function formatRupiah($angka, $prefix = 'Rp ')
+    {
+        return $prefix . number_format($angka, 0, ',', '.');
+    }
+}
+
 // if (!function_exists('generateBookingCode')) {
 //     function generateBookingCode(int $travelId)
 //     {
