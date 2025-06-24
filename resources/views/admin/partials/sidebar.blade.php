@@ -142,7 +142,7 @@
                                 [
                                     'label' => 'Batch',
                                     'name' => 'pilgrimage-batch',
-                                    'route' => 'admin.pilgrimage-type.index',
+                                    'route' => 'admin.pilgrimage-batch.index',
                                 ],
                                 [
                                     'label' => 'Schedule',
