@@ -7,7 +7,7 @@
 
 </head>
 
-<body class="bg-gray-700">
+<body class="dark:bg-gray-900 dark:text-white">
 
     {{-- @include('admin.partials.navbar')  --}}
 
