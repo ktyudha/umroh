@@ -35,4 +35,11 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? asset('storage/' . $this->image)
+            : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
+    }
 }

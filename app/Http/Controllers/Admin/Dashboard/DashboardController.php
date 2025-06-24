@@ -14,14 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $data['travels'] = Travel::all();
-        $data['passengers'] = Pasengger::all();
-        $data['cars'] = Car::all();
 
-        $data['passenger_count'] = Pasengger::count();
-
-
-
-        return view('admin.dashboard.index', $data);
+        return view('admin.dashboard.index');
     }
 }
