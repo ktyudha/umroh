@@ -10,7 +10,11 @@ use App\Models\Pasengger;
 
 class DashboardController extends Controller
 {
-
+    public function __construct()
+    {
+        view()->share('menuActive', 'dashboard');
+        view()->share('subMenuActive', 'dashboard');
+    }
 
     public function index()
     {

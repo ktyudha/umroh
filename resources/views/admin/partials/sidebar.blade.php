@@ -109,8 +109,51 @@
                             ];
 
                         @endphp
-                        <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                        <ul id="dropdown-example" class="@if ($menuActive != 'settings') hidden @endif py-2 space-y-2">
                             @foreach ($settingMenus as $menu)
+                                <li>
+                                    <a href="{{ route($menu['route']) }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endcan
+            @endif
+
+            @if (auth()->user()->hasAnyPermission(['settings']) or auth()->user()->hasRole('superadmin'))
+                @can('settings')
+                    <li>
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-pilgrimage" data-collapse-toggle="dropdown-pilgrimage">
+                            <i
+                                class="fa-solid fa-kaaba shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Pilgrimage</span>
+                            <i class="fa-solid fa-chevron-down w-3 h-3"></i>
+                        </button>
+                        @php
+                            $pilgrimageMenus = [
+                                [
+                                    'label' => 'Type',
+                                    'name' => 'pilgrimage-type',
+                                    'route' => 'admin.pilgrimage-type.index',
+                                ],
+                                [
+                                    'label' => 'Batch',
+                                    'name' => 'pilgrimage-batch',
+                                    'route' => 'admin.pilgrimage-type.index',
+                                ],
+                                [
+                                    'label' => 'Schedule',
+                                    'name' => 'pilgrimage-schedule',
+                                    'route' => 'admin.pilgrimage-type.index',
+                                ],
+                            ];
+
+                        @endphp
+                        <ul id="dropdown-pilgrimage" class="@if ($menuActive != 'pilgrimage') hidden @endif py-2 space-y-2">
+                            @foreach ($pilgrimageMenus as $menu)
                                 <li>
                                     <a href="{{ route($menu['route']) }}"
                                         class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>

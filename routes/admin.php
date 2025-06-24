@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
 use App\Http\Controllers\Admin\Inbox\InboxController;
 use App\Http\Controllers\Admin\Pasengger\PasenggerController;
+use App\Http\Controllers\Admin\Pilgrimage\PilgrimageTypeController;
 use App\Http\Controllers\Admin\Setting\AboutController;
 use App\Http\Controllers\Admin\Setting\BasicInfoController;
 use App\Http\Controllers\Admin\Setting\LogoController;
@@ -37,6 +38,9 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
 
         // Social
         Route::resource('social', SocialMediaController::class);
+
+        // Pilgrimage
+        Route::resource('pilgrimage-type', PilgrimageTypeController::class);
 
         // Settings
         Route::prefix('settings')
