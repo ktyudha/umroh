@@ -107,7 +107,7 @@ class RoleController extends Controller
 
         $role->update($request->all());
 
-        return redirect()->back()->with([
+        return redirect()->route('admin.roles.index')->with([
             'status' => 'success',
             'message' => 'Role has been updated.'
         ]);

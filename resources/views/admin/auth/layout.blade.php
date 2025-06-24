@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {{-- @include('admin.partials.metadata') --}}
+    @include('admin.partials.metadata')
     @include('admin.partials.styles')
 </head>
 

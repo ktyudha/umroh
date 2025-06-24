@@ -7,13 +7,13 @@
 
 </head>
 
-<body>
+<body class="dark:bg-gray-900 dark:text-white">
 
     {{-- @include('admin.partials.navbar')  --}}
 
     @include('admin.partials.sidebar')
 
-    <div class="px-6 sm:ml-64 my-20 ">
+    <div class="px-6 sm:ml-64 my-20">
         @yield('content')
     </div>
 
