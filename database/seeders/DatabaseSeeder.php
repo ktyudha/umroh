@@ -17,5 +17,10 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(CarSeeder::class);
         $this->call(TravelSeeder::class);
+
+
+        if (app()->environment() === 'local') {
+            $this->call(UsersTableSeeder::class);
+        }
     }
 }

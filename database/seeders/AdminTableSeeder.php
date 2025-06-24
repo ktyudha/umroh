@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 class AdminTableSeeder extends Seeder
 {
@@ -19,6 +20,13 @@ class AdminTableSeeder extends Seeder
     {
         Schema::disableForeignKeyConstraints();
         DB::table('users')->truncate();
+        DB::table('model_has_roles')->truncate();
+
+        // Create or find the role
+        $superadminRole = Role::firstOrCreate(['name' => 'superadmin']);
+
+        // Assign all permissions to superadmin role
+        $superadminRole->syncPermissions(Permission::all());
 
         $superadmin = User::create([
             'name' => 'Admin',
