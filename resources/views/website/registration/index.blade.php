@@ -16,22 +16,22 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label for="name">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" value="tess" required>
+                            <input type="text" id="name" name="name" placeholder="tess" required>
                         </div>
                         <div class="form-col">
                             <label for="nik">NIK (Nomor Induk Kependudukan)</label>
-                            <input type="text" id="nik" name="nik" value="3515" required>
+                            <input type="text" id="nik" name="nik" placeholder="3515xxx" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
                             <label for="birth_place">Tempat Lahir</label>
-                            <input type="text" id="birth_place" name="birth_place" value="surabaya" required>
+                            <input type="text" id="birth_place" name="birth_place" placeholder="surabaya" required>
                         </div>
                         <div class="form-col">
                             <label for="birth_date">Tanggal Lahir</label>
-                            <input type="date" id="birth_date" name="birth_date" value="2025-06-26" required>
+                            <input type="date" id="birth_date" name="birth_date" placeholder="2025-06-26" required>
                         </div>
                     </div>
 
@@ -66,33 +66,33 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label for="province">Provinsi</label>
-                            <input type="text" id="province" name="province" value="jawa timur" required>
+                            <input type="text" id="province" name="province" placeholder="jawa timur" required>
                         </div>
                         <div class="form-col">
                             <label for="city">Kota/Kabupaten</label>
-                            <input type="text" id="city" name="city" value="surabaya" required>
+                            <input type="text" id="city" name="city" placeholder="surabaya" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
                             <label for="district">Kecamatan</label>
-                            <input type="text" id="district" name="district" value="wonocolo" required>
+                            <input type="text" id="district" name="district" placeholder="wonocolo" required>
                         </div>
                         <div class="form-col">
                             <label for="postal_code">Kode Pos</label>
-                            <input type="text" id="postal_code" name="postal_code" value="61275" required>
+                            <input type="text" id="postal_code" name="postal_code" placeholder="61275" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
                             <label for="phone">Nomor Handphone</label>
-                            <input type="tel" id="phone" name="phone" value="0856" required>
+                            <input type="tel" id="phone" name="phone" placeholder="0856" required>
                         </div>
                         <div class="form-col">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="bili@gmail.com" required>
+                            <input type="email" id="email" name="email" placeholder="bili@gmail.com" required>
                         </div>
                     </div>
                 </div>
@@ -102,22 +102,22 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label for="name_father">Nama Ayah</label>
-                            <input type="text" id="name_father" name="name_father" value="barjon" required>
+                            <input type="text" id="name_father" name="name_father" placeholder="barjon" required>
                         </div>
                         <div class="form-col">
                             <label for="name_mother">Nama Ibu</label>
-                            <input type="text" id="name_mother" name="name_mother" value="steven" required>
+                            <input type="text" id="name_mother" name="name_mother" placeholder="steven" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
                             <label for="name_partner">Nama Suami/Istri</label>
-                            <input type="text" id="name_partner" name="name_partner" value="siti">
+                            <input type="text" id="name_partner" name="name_partner" placeholder="siti">
                         </div>
                         <div class="form-col">
                             <label for="children_count">Jumlah Anak</label>
-                            <input type="number" id="children_count" name="children_count" value="1"
+                            <input type="number" id="children_count" name="children_count" placeholder="1"
                                 min="0">
                         </div>
                     </div>
@@ -128,12 +128,13 @@
                     <div class="form-row">
                         <div class="form-col">
                             <label for="passport_number">Nomor Paspor</label>
-                            <input type="text" id="passport_number" name="passport_number" value="123" required>
+                            <input type="text" id="passport_number" name="passport_number" placeholder="123"
+                                required>
                         </div>
                         <div class="form-col">
                             <label for="passport_issuer_date">Tanggal Terbit Paspor</label>
                             <input type="date" id="passport_issuer_date" name="passport_issuer_date"
-                                value="2024-06-20" required>
+                                placeholder="2024-06-20" required>
                         </div>
                     </div>
 
@@ -141,12 +142,12 @@
                         <div class="form-col">
                             <label for="passport_expiry_date">Tanggal Habis Masa Berlaku Paspor</label>
                             <input type="date" id="passport_expiry_date" name="passport_expiry_date"
-                                value="2029-06-20" required>
+                                placeholder="2029-06-20" required>
                         </div>
                         <div class="form-col">
                             <label for="passport_place_issued">Tempat Diterbitkan Paspor</label>
                             <input type="text" id="passport_place_issued" name="passport_place_issued"
-                                value="surabaya" required>
+                                placeholder="surabaya" required>
                         </div>
                     </div>
                 </div>
