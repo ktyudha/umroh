@@ -20,5 +20,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact.index
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/registration', [RegistrationController::class, 'index'])->name('registration.index');
+Route::post('/registration/store', [RegistrationController::class, 'store'])->name('registration.store');
+
 Route::get('/regulation', [RegulationController::class, 'index'])->name('regulation.index');
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');

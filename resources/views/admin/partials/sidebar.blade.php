@@ -144,6 +144,11 @@
                                     'name' => 'pilgrimage-batch',
                                     'route' => 'admin.pilgrimage-batch.index',
                                 ],
+                                [
+                                    'label' => 'Customer',
+                                    'name' => 'customer',
+                                    'route' => 'admin.customers.index',
+                                ],
                                 // [
                                 //     'label' => 'Schedule',
                                 //     'name' => 'pilgrimage-schedule',

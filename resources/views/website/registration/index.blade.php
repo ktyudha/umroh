@@ -8,89 +8,91 @@
             <h2>Formulir Pendaftaran Haji & Umrah</h2>
             <p>Silakan isi formulir berikut dengan data yang lengkap dan benar</p>
 
-            <form class="registration-form">
+            <form class="registration-form" action="{{ route('registration.store') }}" method="post"
+                enctype="multipart/form-data">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <h3>Data Pribadi</h3>
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="nama">Nama Lengkap</label>
-                            <input type="text" id="nama" name="nama" required>
+                            <label for="name">Nama Lengkap</label>
+                            <input type="text" id="name" name="name" value="tess" required>
                         </div>
                         <div class="form-col">
                             <label for="nik">NIK (Nomor Induk Kependudukan)</label>
-                            <input type="text" id="nik" name="nik" required>
+                            <input type="text" id="nik" name="nik" value="3515" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="tempat_lahir">Tempat Lahir</label>
-                            <input type="text" id="tempat_lahir" name="tempat_lahir" required>
+                            <label for="birth_place">Tempat Lahir</label>
+                            <input type="text" id="birth_place" name="birth_place" value="surabaya" required>
                         </div>
                         <div class="form-col">
-                            <label for="tanggal_lahir">Tanggal Lahir</label>
-                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required>
+                            <label for="birth_date">Tanggal Lahir</label>
+                            <input type="date" id="birth_date" name="birth_date" value="2025-06-26" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="jenis_kelamin">Jenis Kelamin</label>
-                            <select id="jenis_kelamin" name="jenis_kelamin" required>
+                            <label for="gender">Jenis Kelamin</label>
+                            <select id="gender" name="gender" required>
                                 <option value="">Pilih Jenis Kelamin</option>
-                                <option value="L">Laki-laki</option>
-                                <option value="P">Perempuan</option>
+                                <option value="male" selected>Laki-laki</option>
+                                <option value="female">Perempuan</option>
                             </select>
                         </div>
                         <div class="form-col">
-                            <label for="status_pernikahan">Status Pernikahan</label>
-                            <select id="status_pernikahan" name="status_pernikahan" required>
+                            <label for="marital_status">Status Pernikahan</label>
+                            <select id="marital_status" name="marital_status" required>
                                 <option value="">Pilih Status</option>
-                                <option value="belum_menikah">Belum Menikah</option>
-                                <option value="menikah">Menikah</option>
-                                <option value="janda">Janda</option>
-                                <option value="duda">Duda</option>
+                                <option value="single" selected>Belum Menikah</option>
+                                <option value="married">Menikah</option>
+                                <option value="widow">Janda</option>
+                                <option value="widower">Duda</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="alamat">Alamat Lengkap</label>
-                            <textarea id="alamat" name="alamat" rows="3" required></textarea>
+                            <label for="address">Alamat Lengkap</label>
+                            <textarea id="address" name="address" rows="3" required>surabaya</textarea>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="provinsi">Provinsi</label>
-                            <input type="text" id="provinsi" name="provinsi" required>
+                            <label for="province">Provinsi</label>
+                            <input type="text" id="province" name="province" value="jawa timur" required>
                         </div>
                         <div class="form-col">
-                            <label for="kota">Kota/Kabupaten</label>
-                            <input type="text" id="kota" name="kota" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-col">
-                            <label for="kecamatan">Kecamatan</label>
-                            <input type="text" id="kecamatan" name="kecamatan" required>
-                        </div>
-                        <div class="form-col">
-                            <label for="kode_pos">Kode Pos</label>
-                            <input type="text" id="kode_pos" name="kode_pos" required>
+                            <label for="city">Kota/Kabupaten</label>
+                            <input type="text" id="city" name="city" value="surabaya" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="no_hp">Nomor Handphone</label>
-                            <input type="tel" id="no_hp" name="no_hp" required>
+                            <label for="district">Kecamatan</label>
+                            <input type="text" id="district" name="district" value="wonocolo" required>
+                        </div>
+                        <div class="form-col">
+                            <label for="postal_code">Kode Pos</label>
+                            <input type="text" id="postal_code" name="postal_code" value="61275" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="phone">Nomor Handphone</label>
+                            <input type="tel" id="phone" name="phone" value="0856" required>
                         </div>
                         <div class="form-col">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" value="bili@gmail.com" required>
                         </div>
                     </div>
                 </div>
@@ -99,23 +101,24 @@
                     <h3>Data Keluarga</h3>
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="nama_ayah">Nama Ayah</label>
-                            <input type="text" id="nama_ayah" name="nama_ayah" required>
+                            <label for="name_father">Nama Ayah</label>
+                            <input type="text" id="name_father" name="name_father" value="barjon" required>
                         </div>
                         <div class="form-col">
-                            <label for="nama_ibu">Nama Ibu</label>
-                            <input type="text" id="nama_ibu" name="nama_ibu" required>
+                            <label for="name_mother">Nama Ibu</label>
+                            <input type="text" id="name_mother" name="name_mother" value="steven" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="nama_pasangan">Nama Suami/Istri</label>
-                            <input type="text" id="nama_pasangan" name="nama_pasangan">
+                            <label for="name_partner">Nama Suami/Istri</label>
+                            <input type="text" id="name_partner" name="name_partner" value="siti">
                         </div>
                         <div class="form-col">
-                            <label for="jumlah_anak">Jumlah Anak</label>
-                            <input type="number" id="jumlah_anak" name="jumlah_anak" min="0">
+                            <label for="children_count">Jumlah Anak</label>
+                            <input type="number" id="children_count" name="children_count" value="1"
+                                min="0">
                         </div>
                     </div>
                 </div>
@@ -124,23 +127,26 @@
                     <h3>Data Paspor</h3>
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="no_paspor">Nomor Paspor</label>
-                            <input type="text" id="no_paspor" name="no_paspor" required>
+                            <label for="passport_number">Nomor Paspor</label>
+                            <input type="text" id="passport_number" name="passport_number" value="123" required>
                         </div>
                         <div class="form-col">
-                            <label for="tanggal_terbit_paspor">Tanggal Terbit Paspor</label>
-                            <input type="date" id="tanggal_terbit_paspor" name="tanggal_terbit_paspor" required>
+                            <label for="passport_issuer_date">Tanggal Terbit Paspor</label>
+                            <input type="date" id="passport_issuer_date" name="passport_issuer_date"
+                                value="2024-06-20" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="tanggal_habis_paspor">Tanggal Habis Masa Berlaku Paspor</label>
-                            <input type="date" id="tanggal_habis_paspor" name="tanggal_habis_paspor" required>
+                            <label for="passport_expiry_date">Tanggal Habis Masa Berlaku Paspor</label>
+                            <input type="date" id="passport_expiry_date" name="passport_expiry_date"
+                                value="2029-06-20" required>
                         </div>
                         <div class="form-col">
-                            <label for="tempat_terbit_paspor">Tempat Diterbitkan Paspor</label>
-                            <input type="text" id="tempat_terbit_paspor" name="tempat_terbit_paspor" required>
+                            <label for="passport_place_issued">Tempat Diterbitkan Paspor</label>
+                            <input type="text" id="passport_place_issued" name="passport_place_issued"
+                                value="surabaya" required>
                         </div>
                     </div>
                 </div>
@@ -149,26 +155,27 @@
                     <h3>Pilihan Paket</h3>
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="jenis_ibadah">Jenis Ibadah</label>
-                            <select id="jenis_ibadah" name="jenis_ibadah" required>
+                            <label for="pilgrimage_type_id">Jenis Ibadah</label>
+                            <select id="pilgrimage_type_id" name="pilgrimage_type_id" required>
                                 <option value="">Pilih Jenis Ibadah</option>
-                                <option value="haji">Haji</option>
-                                <option value="umrah">Umrah</option>
-                                <option value="haji_khusus">Haji Khusus</option>
+                                @foreach ($pilgrimageTypes as $key => $type)
+                                    <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                @endforeach
                             </select>
                         </div>
+
                         <div class="form-col">
-                            <label for="tahun_keberangkatan">Tahun Keberangkatan</label>
-                            <select id="tahun_keberangkatan" name="tahun_keberangkatan" required>
-                                <option value="">Pilih Tahun</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
+                            <label for="pilgrimage_batch_id">Jenis Keberangkatan</label>
+                            <select id="pilgrimage_batch_id" name="pilgrimage_batch_id" required>
+                                <option value="">Pilih Keberangkatan</option>
+                                @foreach ($pilgrimageBatches as $key => $batch)
+                                    <option value="{{ $batch->id }}">{{ $batch->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    {{-- <div class="form-row">
                         <div class="form-col">
                             <label for="paket">Pilihan Paket</label>
                             <select id="paket" name="paket" required>
@@ -178,15 +185,15 @@
                                 <option value="vip">VIP</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="form-group">
                     <h3>Upload Dokumen</h3>
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="foto">Foto 4x6 (Latar Belakang Merah)</label>
-                            <input type="file" id="foto" name="foto" accept="image/*" required>
+                            <label for="image">Foto 4x6 (Latar Belakang Merah)</label>
+                            <input type="file" id="image" name="image" accept="image/*" required>
                         </div>
                         <div class="form-col">
                             <label for="ktp">Scan KTP</label>
@@ -200,19 +207,20 @@
                             <input type="file" id="kk" name="kk" accept="image/*,.pdf" required>
                         </div>
                         <div class="form-col">
-                            <label for="paspor">Scan Paspor</label>
-                            <input type="file" id="paspor" name="paspor" accept="image/*,.pdf" required>
+                            <label for="passport">Scan Paspor</label>
+                            <input type="file" id="passport" name="passport" accept="image/*,.pdf" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-col">
-                            <label for="sertifikat_vaksin">Sertifikat Vaksin Meningitis</label>
-                            <input type="file" id="sertifikat_vaksin" name="sertifikat_vaksin" accept="image/*,.pdf">
+                            <label for="vaccine_certificate">Sertifikat Vaksin Meningitis</label>
+                            <input type="file" id="vaccine_certificate" name="vaccine_certificate"
+                                accept="image/*,.pdf">
                         </div>
                         <div class="form-col">
-                            <label for="bukti_pembayaran">Bukti Pembayaran DP</label>
-                            <input type="file" id="bukti_pembayaran" name="bukti_pembayaran" accept="image/*,.pdf">
+                            <label for="payment_proof">Bukti Pembayaran DP</label>
+                            <input type="file" id="payment_proof" name="payment_proof" accept="image/*,.pdf">
                         </div>
                     </div>
                 </div>
