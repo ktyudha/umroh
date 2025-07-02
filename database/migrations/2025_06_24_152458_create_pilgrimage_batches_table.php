@@ -23,6 +23,7 @@ return new class extends Migration
             $table->unsignedBigInteger('price');
             $table->integer('quota')->default(0);
             $table->enum('status', ['sold', 'available', 'pending'])->default('available');
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }

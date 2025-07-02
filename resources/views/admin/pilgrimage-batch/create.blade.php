@@ -29,7 +29,7 @@
 
     <div class="mt-10 dark:bg-gray-800 rounded-lg p-6">
         <form class="form-horizontal flex flex-col gap-4" id="form-posts"
-            action="{{ route('admin.pilgrimage-batch.store') }}" method="post">
+            action="{{ route('admin.pilgrimage-batch.store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div>
                 <label class="mb-3 block text-sm font-medium text-black dark:text-white">
@@ -144,6 +144,23 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="mb-5 form-group">
+                <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Image
+                    <small class="text-red-500 font-bold">*</small>
+                </label>
+                <input
+                    class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                    id="image" type="file" name="image"
+                    onchange="document.querySelector('.form-group img').src = window.URL.createObjectURL(this.files[0])"
+                    accept="image/*">
+                <p class="my-1 text-sm text-red-500 italic" id="file_input_help"> PNG, JPG, JPEG
+                    (MAX.
+                    2MB).</p>
+
+                <img src="{{ asset('static/admin/images/default.png') }}" class="rounded object-cover h-48 w-48"
+                    alt="photo">
             </div>
 
             <div class="mr-auto">

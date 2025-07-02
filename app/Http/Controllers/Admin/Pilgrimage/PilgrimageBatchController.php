@@ -6,6 +6,7 @@ use App\Models\Pilgrimage\PilgrimageBatch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pilgrimage\PilgrimageType;
+use Illuminate\Support\Facades\Storage;
 
 class PilgrimageBatchController extends Controller
 {
@@ -52,9 +53,14 @@ class PilgrimageBatchController extends Controller
             'price' => 'required|numeric|min:0',
             'quota'  => 'required|integer|min:0',
             'status' => 'required|in:sold,available,pending',
+            'image' => 'required|image'
         ]);
 
+        $path = $request->file('image')->store('pilgrimage_batches');
+
         $social = new PilgrimageBatch($request->all());
+        $social->image = $path;
+
         $social->save();
 
         return redirect()
@@ -94,9 +100,22 @@ class PilgrimageBatchController extends Controller
             'price' => 'required|numeric|min:0',
             'quota'  => 'required|integer|min:0',
             'status' => 'required|in:sold,available,pending',
+            'image' => 'image|max:2048'
         ]);
 
-        $pilgrimageBatch->update($request->all());
+        $payload = $request->all();
+
+        if ($request->hasFile('image')) {
+            // Hapus file lama jika ada
+            if (Storage::exists($pilgrimageBatch->image)) {
+                Storage::delete($pilgrimageBatch->image);
+            }
+
+            $path = $request->file('image')->store('pilgrimage_batches');
+            $payload['image'] = $path;
+        }
+
+        $pilgrimageBatch->update($payload);
 
         return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'success', 'message' => 'Update Successfully']);
     }
@@ -106,6 +125,10 @@ class PilgrimageBatchController extends Controller
      */
     public function destroy(PilgrimageBatch $pilgrimageBatch)
     {
+        if (Storage::exists($pilgrimageBatch->image)) {
+            Storage::delete($pilgrimageBatch->image);
+        }
+
         if ($pilgrimageBatch->delete()) {
             return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'success', 'message' => 'Delete Successfully']);
         }

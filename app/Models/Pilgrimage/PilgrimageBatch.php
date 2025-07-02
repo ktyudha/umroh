@@ -2,6 +2,7 @@
 
 namespace App\Models\Pilgrimage;
 
+use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Carbon\Carbon;
@@ -21,11 +22,17 @@ class PilgrimageBatch extends Model
         'price',
         'quota',
         'status',
+        'image'
     ];
 
-    public function PilgrimageType()
+    public function pilgrimageType()
     {
         return $this->belongsTo(PilgrimageType::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
     }
 
     public function sluggable(): array
@@ -48,5 +55,12 @@ class PilgrimageBatch extends Model
                 $model->duration = $duration;
             }
         });
+    }
+
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? asset('storage/' . $this->image)
+            : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
     }
 }
