@@ -159,9 +159,9 @@ class HotelController extends Controller
         }
 
         if ($hotel->delete()) {
-            return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'success', 'message' => 'Delete Successfully']);
+            return redirect()->route('admin.hotels.index')->with(['status' => 'success', 'message' => 'Delete Successfully']);
         }
 
-        return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'danger', 'message' => 'Delete Failed, Contact Developer']);
+        return redirect()->route('admin.hotels.index')->with(['status' => 'danger', 'message' => 'Delete Failed, Contact Developer']);
     }
 }
