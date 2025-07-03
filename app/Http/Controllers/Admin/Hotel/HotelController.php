@@ -65,7 +65,7 @@ class HotelController extends Controller
         }
 
         return redirect()
-            ->route('admin.pilgrimage-batch.index')
+            ->route('admin.hotels.index')
             ->with(['status' => 'success', 'message' => 'Save Successfully']);
     }
 
@@ -140,7 +140,7 @@ class HotelController extends Controller
 
         $hotel->update($request->all());
 
-        return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'success', 'message' => 'Update successfully.']);
+        return redirect()->route('admin.hotels.index')->with(['status' => 'success', 'message' => 'Update successfully.']);
     }
 
     /**
