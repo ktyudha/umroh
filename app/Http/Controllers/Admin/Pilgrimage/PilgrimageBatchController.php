@@ -51,7 +51,9 @@ class PilgrimageBatchController extends Controller
     {
         $request->validate([
             'name' => 'required|max:250',
-            'description'  => 'nullable|string',
+            'facility'  => 'required|string',
+            'requirement'  => 'required|string',
+            'terms_condition'  => 'required|string',
             'pilgrimage_type_id'  => 'required|exists:pilgrimage_types,id',
             'departure_date'  => 'required|date',
             'return_date' => 'required|date|after_or_equal:departure_date',
@@ -114,7 +116,9 @@ class PilgrimageBatchController extends Controller
     {
         $request->validate([
             'name' => 'required|max:250',
-            'description'  => 'nullable|string',
+            'facility'  => 'required|string',
+            'requirement'  => 'required|string',
+            'terms_condition'  => 'required|string',
             'pilgrimage_type_id'  => 'required|exists:pilgrimage_types,id',
             'departure_date'  => 'required|date',
             'return_date' => 'required|date|after_or_equal:departure_date',

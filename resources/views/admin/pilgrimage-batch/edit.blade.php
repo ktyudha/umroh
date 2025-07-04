@@ -34,7 +34,7 @@
     @endif
 
     <div class="mt-10 dark:bg-gray-800 rounded-lg p-6">
-        <form class="form-horizontal flex flex-col gap-4" id="form-posts"
+        <form class="form-horizontal flex flex-col gap-4" id="form-pilgrimage-batches"
             action="{{ route('admin.pilgrimage-batch.update', $model->id) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             {{ method_field('put') }}
