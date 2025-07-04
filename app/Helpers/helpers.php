@@ -53,3 +53,14 @@ if (!function_exists('formatRupiah')) {
 //         return $date . $travelId . $counter;
 //     }
 // }
+
+if (!function_exists('generateFlightNumber')) {
+    function generateFlightNumber(string $airlineCode = 'GA', int $lastNumber = 0): string
+    {
+        // Tambahkan leading zero (contoh: 7 jadi 007)
+        $number = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+
+        // Gabungkan dengan kode maskapai
+        return strtoupper($airlineCode) . '-' . $number;
+    }
+}

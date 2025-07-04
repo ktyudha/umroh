@@ -15,6 +15,9 @@ use App\Http\Controllers\Admin\User\RoleController;
 use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\Pilgrimage\PilgrimageBatchController;
 use App\Http\Controllers\Admin\Customer\CustomerController;
+use App\Http\Controllers\Admin\Hotel\HotelController;
+use App\Http\Controllers\Admin\Transportation\TransportationController;
+use App\Http\Controllers\Admin\Transportation\TransportationTripController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
@@ -47,6 +50,13 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
 
         // Customers
         Route::resource('customers', CustomerController::class);
+
+        // Hotels
+        Route::resource('hotels', HotelController::class);
+
+        // Trasnportations
+        Route::resource('transportations', TransportationController::class);
+        Route::resource('transportation-trips', TransportationTripController::class);
 
         // Settings
         Route::prefix('settings')
