@@ -27,4 +27,9 @@ class ScheduleController extends Controller
 
         return view('website.schedule.index', $data);
     }
+
+    public function show(string $slug)
+    {
+        return view('website.schedule.show');
+    }
 }
