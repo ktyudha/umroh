@@ -3,6 +3,8 @@
 namespace App\Models\Pilgrimage;
 
 use App\Models\Customer;
+use App\Models\Hotel\Hotel;
+use App\Models\Transportation\TransportationTrip;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Carbon\Carbon;
@@ -26,16 +28,6 @@ class PilgrimageBatch extends Model
         'terms_condition',
         'image'
     ];
-
-    public function pilgrimageType()
-    {
-        return $this->belongsTo(PilgrimageType::class);
-    }
-
-    public function customers()
-    {
-        return $this->hasMany(Customer::class);
-    }
 
     public function sluggable(): array
     {
@@ -64,5 +56,25 @@ class PilgrimageBatch extends Model
         return $this->image
             ? asset('storage/' . $this->image)
             : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
+    }
+
+    public function pilgrimageType()
+    {
+        return $this->belongsTo(PilgrimageType::class);
+    }
+
+    public function customers()
+    {
+        return $this->hasMany(Customer::class);
+    }
+
+    public function hotels()
+    {
+        return $this->belongsToMany(Hotel::class, 'pilgrimage_batch_hotel')->withTimestamps();
+    }
+
+    public function transportationTrips()
+    {
+        return $this->belongsToMany(TransportationTrip::class, 'pilgrimage_batch_trip')->withTimestamps();
     }
 }

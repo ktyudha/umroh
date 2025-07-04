@@ -2,6 +2,12 @@
 
 @section('title', 'Pilgrimage Batch')
 
+@section('styles')
+    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="//cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+@endsection
 
 @section('content')
     <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
@@ -41,15 +47,42 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Name of pilgrimage batch" value="{{ old('name') ?: @$model->name }}" required />
             </div>
-            <div class="col-span-1">
-                <label class="mb-3 block text-sm font-medium text-black dark:text-white">
-                    Description
-                </label>
-                <textarea type="text" name="description" id="description" rows="3"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Description of pilgrimage batch" required>{{ old('description') ?: @$model->description }}</textarea>
-            </div>
+
             <div class="grid grid-cols-2 mb-4 gap-4">
+
+                <div>
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Hotels
+                        <small class="text-red-500 font-bold">*</small>
+                    </label>
+                    <select id="hotel_ids" name="hotel_ids[]" multiple
+                        class="tom-select bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        required>
+                        @foreach ($hotels as $hotel)
+                            <option value="{{ $hotel->id }}"
+                                {{ collect(old('hotel_ids', $model->hotels->pluck('id')))->contains($hotel->id) ? 'selected' : '' }}>
+                                {{ $hotel->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                        Transportation Trips
+                        <small class="text-red-500 font-bold">*</small>
+                    </label>
+                    <select id="transportation_trip_ids" name="transportation_trip_ids[]" multiple
+                        class="tom-select bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                        required>
+                        @foreach ($transportationTrips as $trip)
+                            <option value="{{ $trip->id }}"
+                                {{ collect(old('transportation_trip_ids', $model->transportationTrips->pluck('id')))->contains($trip->id) ? 'selected' : '' }}>
+                                [{{ $trip->flight_number }}] - {{ $trip->from_airport }} to {{ $trip->to_airport }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Date of Departure
@@ -171,6 +204,31 @@
                 </div>
             </div>
 
+            <div>
+                <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Facility <small class="text-red-500 font-bold">*</small>
+                </label>
+                <div id="facility" style="min-height: 60px;">{!! old('facility') ?: $model->facility !!}</div>
+                <textarea name="facility" class="hidden"></textarea>
+            </div>
+
+            <div>
+                <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Requirement <small class="text-red-500 font-bold">*</small>
+                </label>
+                <div id="requirement" style="min-height: 60px;">{!! old('requirement') ?: $model->requirement !!}</div>
+                <textarea name="requirement" class="hidden"></textarea>
+            </div>
+
+            <div>
+                <label class="mb-3 block text-sm font-medium text-black dark:text-white">
+                    Terms and Condition
+                    <small class="text-red-500 font-bold">*</small>
+                </label>
+                <div id="terms_condition" style="min-height: 60px;">{!! old('terms_condition') ?: $model->terms_condition !!}</div>
+                <textarea name="terms_condition" class="hidden"></textarea>
+            </div>
+
             <div class="mb-5 form-group">
                 <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                     Image
@@ -196,3 +254,43 @@
         </form>
     </div>
 @stop
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
+    <script>
+        const editors = {
+            facility: new Quill('#facility', {
+                theme: 'snow'
+            }),
+            requirement: new Quill('#requirement', {
+                theme: 'snow'
+            }),
+            terms_condition: new Quill('#terms_condition', {
+                theme: 'snow'
+            }),
+        };
+
+        const form = document.querySelector('form#form-pilgrimage-batches');
+
+        form.addEventListener('submit', () => {
+            Object.keys(editors).forEach(name => {
+                const quillEditor = editors[name];
+                const textarea = document.querySelector(`textarea[name="${name}"]`);
+                textarea.value = quillEditor.root.innerHTML;
+            });
+        });
+    </script>
+
+    {{-- Select2 --}}
+    <script>
+        document.querySelectorAll('.tom-select').forEach(function(el) {
+            new TomSelect(el, {
+                plugins: ['remove_button'],
+                persist: false,
+                create: false,
+                placeholder: el.getAttribute('placeholder') || 'Select options'
+            });
+        });
+    </script>
+@endsection
