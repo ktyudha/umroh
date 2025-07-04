@@ -15,7 +15,8 @@
                             class="fa-solid fa-magnifying-glass"></i></button>
 
                     @if (request('search'))
-                        <a href="{{ route('schedule.index') }}" class="bg-red-500 px-5 py-2.5 rounded text-white">
+                        <a href="{{ route('schedule.index') }}"
+                            class="bg-red-500 px-5 py-2.5 rounded text-white hover:text-white">
                             <i class="fa-solid fa-x"></i>
                         </a>
                     @endif
@@ -70,10 +71,11 @@
                             <p class="text-lg">{{ formatRupiah($schedule->price) }}</p>
                         </div>
 
-                        <button
-                            class="mt-2 w-full bg-blue-500 text-white py-1 rounded {{ $quota <= $booked ? 'cursor-not-allowed' : '' }}"
-                            @if ($quota <= $booked) disabled @endif>Detail
-                            Paket</button>
+                        <a href="{{ $quota <= $booked ? '#' : route('schedule.show', $schedule->slug) }}"
+                            class="mt-2 w-full inline-block text-center bg-blue-500 text-white hover:text-white py-1 rounded 
+          {{ $quota <= $booked ? 'cursor-not-allowed opacity-50 pointer-events-none' : '' }}">
+                            Detail Paket
+                        </a>
                     </div>
                 @endforeach
             </div>

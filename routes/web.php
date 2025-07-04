@@ -23,4 +23,6 @@ Route::get('/registration', [RegistrationController::class, 'index'])->name('reg
 Route::post('/registration/store', [RegistrationController::class, 'store'])->name('registration.store');
 
 Route::get('/regulation', [RegulationController::class, 'index'])->name('regulation.index');
+
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
+Route::get('/schedule/{slug}', [ScheduleController::class, 'show'])->name('schedule.show');
