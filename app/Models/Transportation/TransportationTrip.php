@@ -2,6 +2,7 @@
 
 namespace App\Models\Transportation;
 
+use App\Models\Pilgrimage\PilgrimageBatch;
 use App\Models\Transportation\Transportation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -47,5 +48,10 @@ class TransportationTrip extends Model
     public function transportation()
     {
         return $this->belongsTo(Transportation::class);
+    }
+
+    public function pilgrimageBatches()
+    {
+        return $this->belongsToMany(PilgrimageBatch::class, 'pilgrimage_batch_trip');
     }
 }

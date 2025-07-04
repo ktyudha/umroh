@@ -16,7 +16,9 @@ return new class extends Migration
             $table->foreignId('pilgrimage_type_id')->constrained('pilgrimage_types')->onDelete('cascade');
             $table->string('name');
             $table->string('slug');
-            $table->text('description')->nullable();
+            $table->text('facility')->nullable();
+            $table->text('requirement')->nullable();
+            $table->longText('terms_condition')->nullable();
             $table->dateTime('departure_date')->nullable();
             $table->dateTime('return_date')->nullable();
             $table->integer('duration')->nullable()->default(0);

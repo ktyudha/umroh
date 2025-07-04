@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin\Pilgrimage;
 use App\Models\Pilgrimage\PilgrimageBatch;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Hotel\Hotel;
 use App\Models\Pilgrimage\PilgrimageType;
+use App\Models\Transportation\TransportationTrip;
 use Illuminate\Support\Facades\Storage;
 
 class PilgrimageBatchController extends Controller
@@ -36,6 +38,9 @@ class PilgrimageBatchController extends Controller
     public function create()
     {
         $data['pilgrimageTypes'] = PilgrimageType::all();
+        $data['hotels'] = Hotel::all();
+        $data['transportationTrips'] = TransportationTrip::all();
+
         return view('admin.pilgrimage-batch.create', $data);
     }
 
@@ -53,7 +58,15 @@ class PilgrimageBatchController extends Controller
             'price' => 'required|numeric|min:0',
             'quota'  => 'required|integer|min:0',
             'status' => 'required|in:sold,available,pending',
-            'image' => 'required|image'
+            'image' => 'required|image',
+
+            // Hotels
+            'hotel_ids' => 'required|array',
+            'hotel_ids.*' => 'exists:hotels,id',
+
+            // Transportation Trips
+            'transportation_trip_ids' => 'required|array',
+            'transportation_trip_ids.*' => 'exists:transportation_trips,id',
         ]);
 
         $path = $request->file('image')->store('pilgrimage_batches');
@@ -62,6 +75,10 @@ class PilgrimageBatchController extends Controller
         $social->image = $path;
 
         $social->save();
+
+        // Save Relation
+        $social->transportationTrips()->attach($request->transportation_trip_ids);
+        $social->hotels()->attach($request->hotel_ids);
 
         return redirect()
             ->route('admin.pilgrimage-batch.index')
@@ -82,7 +99,11 @@ class PilgrimageBatchController extends Controller
     public function edit(PilgrimageBatch $pilgrimageBatch)
     {
         $data['model'] = $pilgrimageBatch;
+
         $data['pilgrimageTypes'] = PilgrimageType::all();
+        $data['hotels'] = Hotel::all();
+        $data['transportationTrips'] = TransportationTrip::all();
+
         return view('admin.pilgrimage-batch.edit', $data);
     }
 
@@ -100,7 +121,13 @@ class PilgrimageBatchController extends Controller
             'price' => 'required|numeric|min:0',
             'quota'  => 'required|integer|min:0',
             'status' => 'required|in:sold,available,pending',
-            'image' => 'image|max:2048'
+            'image' => 'image|max:2048',
+
+            // Relations
+            'hotel_ids' => 'required|array',
+            'hotel_ids.*' => 'exists:hotels,id',
+            'transportation_trip_ids' => 'required|array',
+            'transportation_trip_ids.*' => 'exists:transportation_trips,id',
         ]);
 
         $payload = $request->all();
@@ -116,6 +143,9 @@ class PilgrimageBatchController extends Controller
         }
 
         $pilgrimageBatch->update($payload);
+
+        $pilgrimageBatch->hotels()->sync($request->hotel_ids);
+        $pilgrimageBatch->transportationTrips()->sync($request->transportation_trip_ids);
 
         return redirect()->route('admin.pilgrimage-batch.index')->with(['status' => 'success', 'message' => 'Update Successfully']);
     }
