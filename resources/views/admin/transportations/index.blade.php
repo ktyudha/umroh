@@ -1,10 +1,10 @@
 @extends('admin.layout')
 
-@section('title', 'Hotels')
+@section('title', 'Transportations')
 
 @section('content')
     <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Hotels</h1>
+        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Transportations</h1>
     </div>
 
 
@@ -15,7 +15,7 @@
     @endif
 
     <div class="flex justify-between mb-2">
-        <a href="{{ route('admin.hotels.create') }}"
+        <a href="{{ route('admin.transportations.create') }}"
             class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">Create</a>
     </div>
 
@@ -28,17 +28,14 @@
                         Image
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Information
+                        Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Rating
+                        Class
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Address
+                        Capacity
                     </th>
-                    {{-- <th scope="col" class="px-6 py-3">
-                        Fasilitas
-                    </th> --}}
                     <th scope="col" class="px-6 py-3 text-center">
                         Action
                     </th>
@@ -48,35 +45,30 @@
                 @foreach ($models as $key => $model)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                         <td class="px-6 py-4">
-                            <img src="{{ asset('storage/' . $model->images[0]->image ?? 'static/admin/images/default.png') }}"
+                            <img src="{{ asset('storage/' . $model->image ?? 'static/admin/images/default.png') }}"
                                 alt="{{ $model->name }}" class="max-w-20 object-cover aspect-square">
                         </td>
                         <td class="px-6 py-4">
                             <h5 class="font-medium text-black dark:text-white">{{ $model['name'] }}</h5>
-                            {{ $model['description'] }}
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            @for ($i = 1; $i <= 5; $i++)
-                                @if ($i <= $model['rating'])
-                                    <i class="fa-solid fa-star text-xs text-yellow-400"></i>
-                                @else
-                                    <i class="fa-regular fa-star text-xs text-gray-300"></i>
-                                @endif
-                            @endfor
                         </td>
                         <td class="px-6 py-4">
-                            {{ $model['address'] }}
+                            <button type="button"
+                                class="cursor-default text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase">{{ $model['class'] }}</button>
                         </td>
-                        {{-- <td class="px-6 py-4">
-                            {!! nl2br($model['facility']) !!}
-                        </td> --}}
+                        <td class="px-6 py-4">
+                            {{ $model['capacity'] }} Seat
+                        </td>
                         <td class="my-auto mx-auto">
                             <div class="flex gap-4 justify-center">
-                                <a href="{{ route('admin.hotels.edit', $model->id) }}" class="hover:text-primary">
+                                <a href="{{ route('admin.transportations.edit', $model->id) }}" class="hover:text-primary">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </a>
+
+                                <a href="{{ route('admin.transportations.edit', $model->id) }}" class="hover:text-primary">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
 
-                                <form action="{{ route('admin.hotels.destroy', $model->id) }}" method="post">
+                                <form action="{{ route('admin.transportations.destroy', $model->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                     <button class="hover:text-primary">

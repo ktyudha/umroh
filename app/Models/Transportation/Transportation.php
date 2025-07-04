@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Models\Hotel;
+namespace App\Models\Transportation;
 
+use App\Models\Transportation\TransportationTrip;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
-class Hotel extends Model
+class Transportation extends Model
 {
     use Sluggable;
 
     protected $fillable = [
         'name',
+        'code',
         'slug',
-        'description',
-        'address',
-        'rating',
-        'gmap',
-        'facility',
+        'class',
+        'capacity',
+        'image'
     ];
 
     public function sluggable(): array
@@ -29,9 +29,8 @@ class Hotel extends Model
         ];
     }
 
-
-    public function images()
+    public function trips()
     {
-        return $this->hasMany(HotelImage::class);
+        $this->hasMany(TransportationTrip::class);
     }
 }

@@ -135,6 +135,46 @@
                     <li>
                         <button type="button"
                             class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            aria-controls="dropdown-transportations" data-collapse-toggle="dropdown-transportations">
+                            <i
+                                class="fa-solid fa-plane-departure shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Transportations</span>
+                            <i class="fa-solid fa-chevron-down w-3 h-3"></i>
+                        </button>
+                        @php
+                            $transportationMenus = [
+                                [
+                                    'label' => 'Airline',
+                                    'name' => 'transportations',
+                                    'route' => 'admin.transportations.index',
+                                ],
+                                [
+                                    'label' => 'Trip',
+                                    'name' => 'transportation-trips',
+                                    'route' => 'admin.transportation-trips.index',
+                                ],
+                            ];
+
+                        @endphp
+                        <ul id="dropdown-transportations"
+                            class="@if ($menuActive != 'transportations') hidden @endif py-2 space-y-2">
+                            @foreach ($transportationMenus as $menu)
+                                <li>
+                                    <a href="{{ route($menu['route']) }}"
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </li>
+                @endcan
+            @endif
+
+
+            @if (auth()->user()->hasAnyPermission(['settings']) or auth()->user()->hasRole('superadmin'))
+                @can('settings')
+                    <li>
+                        <button type="button"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                             aria-controls="dropdown-pilgrimage" data-collapse-toggle="dropdown-pilgrimage">
                             <i
                                 class="fa-solid fa-kaaba shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
