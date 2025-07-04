@@ -134,7 +134,7 @@ class PilgrimageBatchController extends Controller
 
         if ($request->hasFile('image')) {
             // Hapus file lama jika ada
-            if (Storage::exists($pilgrimageBatch->image)) {
+            if (!empty($pilgrimageBatch->image) && Storage::exists($pilgrimageBatch->image)) {
                 Storage::delete($pilgrimageBatch->image);
             }
 
@@ -155,7 +155,7 @@ class PilgrimageBatchController extends Controller
      */
     public function destroy(PilgrimageBatch $pilgrimageBatch)
     {
-        if (Storage::exists($pilgrimageBatch->image)) {
+        if (!empty($pilgrimageBatch->image) && Storage::exists($pilgrimageBatch->image)) {
             Storage::delete($pilgrimageBatch->image);
         }
 
