@@ -14,7 +14,7 @@ class PilgrimageBatch extends Model
     protected $fillable = [
         'name',
         'slug',
-        'description',
+        'facility',
         'pilgrimage_type_id',
         'departure_date',
         'return_date',
@@ -22,6 +22,8 @@ class PilgrimageBatch extends Model
         'price',
         'quota',
         'status',
+        'requirement',
+        'terms_condition',
         'image'
     ];
 

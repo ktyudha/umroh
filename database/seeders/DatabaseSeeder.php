@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(CarSeeder::class);
         $this->call(TravelSeeder::class);
+
+        $this->call(HotelSeeder::class);
+        $this->call(HotelImageSeeder::class);
+
+        $this->call(TransportationSeeder::class);
+        $this->call(TransportationTripSeeder::class);
+
         $this->call(PilgrimageTypeSeeder::class);
         $this->call(PilgrimageBatchSeeder::class);
         $this->call(CustomerSeeder::class);
