@@ -30,6 +30,7 @@ class ScheduleController extends Controller
 
     public function show(string $slug)
     {
-        return view('website.schedule.show');
+        $data['schedule'] = PilgrimageBatch::where('slug', $slug)->first();
+        return view('website.schedule.show', $data);
     }
 }
