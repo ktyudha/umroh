@@ -193,11 +193,6 @@
                                     'name' => 'pilgrimage-batch',
                                     'route' => 'admin.pilgrimage-batch.index',
                                 ],
-                                [
-                                    'label' => 'Customer',
-                                    'name' => 'customer',
-                                    'route' => 'admin.customers.index',
-                                ],
                                 // [
                                 //     'label' => 'Schedule',
                                 //     'name' => 'pilgrimage-schedule',
@@ -217,6 +212,24 @@
                     </li>
                 @endcan
             @endif
+
+            <li>
+                <a href="{{ route('admin.itineraries.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i
+                        class="fa-solid fa-map-location-dot shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                    <span class="ms-3">Itineraries</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.customers.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <i
+                        class="fa-solid fa-user-group shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                    <span class="ms-3">Customer</span>
+                </a>
+            </li>
 
             @if (auth()->user()->hasAnyPermission(['inboxes read']) or auth()->user()->hasRole('superadmin'))
                 <li class="text-gray-400 capitalize">Management</li>

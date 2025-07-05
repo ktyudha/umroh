@@ -4,6 +4,7 @@ namespace App\Models\Pilgrimage;
 
 use App\Models\Customer;
 use App\Models\Hotel\Hotel;
+use App\Models\Itinerary;
 use App\Models\Transportation\TransportationTrip;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -76,5 +77,10 @@ class PilgrimageBatch extends Model
     public function transportationTrips()
     {
         return $this->belongsToMany(TransportationTrip::class, 'pilgrimage_batch_trip')->withTimestamps();
+    }
+
+    public function itineraries()
+    {
+        return $this->hasMany(Itinerary::class)->orderBy('date', 'asc');
     }
 }

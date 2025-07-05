@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\Admin\Pilgrimage\PilgrimageBatchController;
 use App\Http\Controllers\Admin\Customer\CustomerController;
 use App\Http\Controllers\Admin\Hotel\HotelController;
+use App\Http\Controllers\Admin\Itinerary\ItineraryController;
 use App\Http\Controllers\Admin\Transportation\TransportationController;
 use App\Http\Controllers\Admin\Transportation\TransportationTripController;
 use Illuminate\Support\Facades\Route;
@@ -57,6 +58,10 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
         // Trasnportations
         Route::resource('transportations', TransportationController::class);
         Route::resource('transportation-trips', TransportationTripController::class);
+
+
+        // Itineraries
+        Route::resource('itineraries', ItineraryController::class);
 
         // Settings
         Route::prefix('settings')
