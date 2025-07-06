@@ -156,7 +156,7 @@ class ItineraryController extends Controller
         }
 
         return redirect()
-            ->route('admin.itineraries.index')
+            ->route('admin.pilgrimage-batch.index')
             ->with(['status' => 'success', 'message' => 'Save Successfully']);
     }
 }

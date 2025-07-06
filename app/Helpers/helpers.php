@@ -36,9 +36,9 @@ if (!function_exists('parseDate')) {
 }
 
 if (!function_exists('formatRupiah')) {
-    function formatRupiah($angka, $prefix = 'Rp ')
+    function formatRupiah($angka, $prefix = 'Rp')
     {
-        return $prefix . number_format($angka, 0, ',', '.');
+        return $prefix . number_format($angka, 0, ',', '.') . ',-';
     }
 }
 

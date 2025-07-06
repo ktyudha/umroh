@@ -59,6 +59,20 @@ class PilgrimageBatch extends Model
             : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
     }
 
+    public function scopeFilter($query, $filters)
+    {
+        if (!empty($filters['search'])) {
+            $query->where('name', 'like', '%' . $filters['search'] . '%');
+        }
+
+        if (!empty($filters['departure_date'])) {
+            $query->whereYear('departure_date', substr($filters['departure_date'], 0, 4))
+                ->whereMonth('departure_date', substr($filters['departure_date'], 5, 2));
+        }
+
+        return $query;
+    }
+
     public function pilgrimageType()
     {
         return $this->belongsTo(PilgrimageType::class);
