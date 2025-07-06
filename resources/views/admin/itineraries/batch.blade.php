@@ -51,7 +51,7 @@
             method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid lg:grid-cols-2 gap-4">
                 <div class="mb-4">
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Pilgrimage batch
