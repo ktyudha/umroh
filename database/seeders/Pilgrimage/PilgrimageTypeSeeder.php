@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Pilgrimage;
 
 use App\Models\Pilgrimage\PilgrimageType;
 use Illuminate\Database\Seeder;
