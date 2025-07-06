@@ -80,7 +80,7 @@
                                 </div>
 
                                 <p class="text-xs">
-                                    {{ parseDate($schedule->return_date) }}</p>
+                                    {{ $schedule->duration }} Hari</p>
                             </div>
 
                             <div class="flex justify-between mb-1">

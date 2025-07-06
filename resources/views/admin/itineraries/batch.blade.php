@@ -1,10 +1,10 @@
 @extends('admin.layout')
 
 @php
-    $title = 'Itineraries';
+    $title = 'Pilgrimage Batches';
     $breadcrumbs = [
         ['label' => 'Home', 'url' => route('admin.index')],
-        ['label' => $title, 'url' => route('admin.itineraries.index')],
+        ['label' => $title, 'url' => route('admin.pilgrimage-batch.index')],
         ['label' => 'Batch', 'url' => null],
     ];
 @endphp
