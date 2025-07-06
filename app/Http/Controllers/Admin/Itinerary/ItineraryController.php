@@ -14,8 +14,8 @@ class ItineraryController extends Controller
 {
     public function __construct()
     {
-        view()->share('menuActive', 'itineraries');
-        view()->share('subMenuActive', 'itineraries');
+        view()->share('menuActive', 'pilgrimage');
+        view()->share('subMenuActive', 'pilgrimage-batch');
     }
     /**
      * Display a listing of the resource.
