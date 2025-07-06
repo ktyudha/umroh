@@ -118,7 +118,7 @@
                                 </div>
 
                                 <p class="text-xs">
-                                    {{ $schedule->quota }} pax</p>
+                                    {{ $remaining }} pax</p>
                             </div>
 
                             <div class="flex justify-between mb-2">
