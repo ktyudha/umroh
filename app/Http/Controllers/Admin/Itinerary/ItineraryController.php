@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Pilgrimage\PilgrimageBatch;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class ItineraryController extends Controller
 {
@@ -106,5 +108,55 @@ class ItineraryController extends Controller
         }
 
         return redirect()->route('admin.itineraries.index')->with(['status' => 'danger', 'message' => 'Delete Failed, Contact Developer']);
+    }
+
+    public function createBatch($slug)
+    {
+        $data['pilgrimageBatch'] = PilgrimageBatch::where('slug', $slug)->first();
+
+        $departure = Carbon::parse($data['pilgrimageBatch']->departure_date)->startOfDay();
+        $return = Carbon::parse($data['pilgrimageBatch']->return_date)->endOfDay();
+
+        $data['travelDates'] = collect(CarbonPeriod::create($departure, $return))
+            ->map(fn($date) => $date->toDateString())
+            ->toArray();
+
+        $data['existingItineraries'] = Itinerary::where('pilgrimage_batch_id', $data['pilgrimageBatch']->id)
+            ->get()
+            ->keyBy(fn($item) => Carbon::parse($item->date)->toDateString());
+
+        return view('admin.itineraries.batch', $data);
+    }
+
+    public function storeBatch(Request $request)
+    {
+        $request->validate([
+            'pilgrimage_batch_id' => 'required|exists:pilgrimage_batches,id',
+            'locations' => 'required|array',
+            'locations.*' => 'required|string',
+            'dates' => 'required|array',
+            'dates.*' => 'required|date',
+            'descriptions' => 'required|array',
+            'descriptions.*' => 'required|string',
+        ]);
+
+        $batchId = $request->pilgrimage_batch_id;
+
+        foreach ($request->locations as $index => $location) {
+            Itinerary::updateOrCreate(
+                [
+                    'pilgrimage_batch_id' => $batchId,
+                    'date' => $request->dates[$index],
+                ],
+                [
+                    'location' => $location,
+                    'description' => $request->descriptions[$index],
+                ]
+            );
+        }
+
+        return redirect()
+            ->route('admin.itineraries.index')
+            ->with(['status' => 'success', 'message' => 'Save Successfully']);
     }
 }
