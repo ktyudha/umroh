@@ -2,6 +2,7 @@
 
 @section('title', 'Jadwal')
 
+
 @section('content')
     <section class="schedule-section py-12 bg-[#f8f8f8]">
         <div class="container">
@@ -9,15 +10,17 @@
 
             <div class="mt-5 w-3/4 mx-auto">
                 <form action="" method="get"
-                    class="flex lg:flex-row flex-col justify-center bg-white p-4 drop-shadow-md rounded-lg">
-                    <div class="flex justify-between border-r border-gray-500 lg:min-w-80">
+                    class="flex lg:flex-row flex-col gap-2 justify-center bg-white p-4 drop-shadow-md rounded-lg">
+                    <div class="flex justify-between lg:border-r border-gray-500 lg:min-w-80">
                         <input type="text" class="rounded w-full border-none text-sm" id="search" name="search"
                             placeholder="Paket Umroh" value="{{ request('search') }}">
                         <i class="fa-regular fa-map my-auto mx-4"></i>
                     </div>
                     <div class="flex justify-between lg:min-w-80">
-                        <input type="month" class="rounded w-full border-none text-sm" id="departure_date"
+                        <input type="month" class="rounded w-full border-none text-sm appearance-none" id="departure_date"
                             name="departure_date" placeholder="Waktu Keberangkatan" value="{{ request('departure_date') }}">
+
+                        <i class="fa-regular fa-calendar my-auto mx-4 lg:!hidden display"></i>
                     </div>
 
                     <div class="w-full grid grid-cols-2">
