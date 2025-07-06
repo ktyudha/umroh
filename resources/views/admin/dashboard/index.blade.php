@@ -1,9 +1,14 @@
 @extends('admin.layout')
 
-@section('title', 'Dashboard')
+@php
+    $title = 'Dashboard';
+    $breadcrumbs = [['label' => 'Home', 'url' => route('admin.index')], ['label' => 'Dashboard', 'url' => null]];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Dashboard</h1>
+    <div class="mt-5">
+        Selamat Datang <strong>{{ auth()->user()->name }}</strong>!
     </div>
 @stop

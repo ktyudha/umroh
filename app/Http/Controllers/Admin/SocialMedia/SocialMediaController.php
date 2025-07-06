@@ -11,10 +11,10 @@ class SocialMediaController extends Controller
 
     public function __construct()
     {
-        $this->middleware('permission:social read');
-        $this->middleware('permission:social create')->only('create', 'store');
-        $this->middleware('permission:social update')->only('edit', 'update');
-        $this->middleware('permission:social delete')->only('destroy');
+        $this->middleware('permission:socials read');
+        $this->middleware('permission:socials create')->only('create', 'store');
+        $this->middleware('permission:socials update')->only('edit', 'update');
+        $this->middleware('permission:socials delete')->only('destroy');
 
         view()->share('menuActive', 'settings');
         view()->share('subMenuActive', 'social-media');

@@ -1,6 +1,15 @@
 @extends('admin.layout')
 
-@section('title', 'Inboxes')
+@php
+    $title = 'Inboxes';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => $title, 'url' => route('admin.inboxes.index')],
+        ['label' => 'Edit', 'url' => null],
+    ];
+@endphp
+
+@section('title', $title)
 
 @section('styles')
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -8,14 +17,9 @@
 @endsection
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Inboxes</h1>
-    </div>
-
-
 
     @if ($errors->any())
-        <div class="mt-10 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+        <div class=" flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor" viewBox="0 0 20 20">
                 <path
@@ -34,7 +38,7 @@
     @endif
 
 
-    <div class="mt-10 dark:bg-gray-800 rounded-lg p-6">
+    <div class="dark:bg-gray-800 rounded-lg p-6">
         <form class="form-horizontal flex flex-col gap-4" id="form-posts"
             action="{{ route('admin.inboxes.update', $model->id) }}" method="POST" enctype="multipart/form-data">
 

@@ -1,12 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'Logo')
+@php
+    $title = 'Logo';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => 'Settings', 'url' => null],
+        ['label' => $title, 'url' => null],
+    ];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Logo</h1>
-    </div>
-
     @if (Session::has('success'))
         <div class="mb-5 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
             <span class="font-medium">Success alert!</span> {{ session('success') }}

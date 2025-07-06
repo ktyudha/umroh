@@ -1,12 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Social Media')
+@php
+    $title = 'Social Media';
+    $breadcrumbs = [['label' => 'Home', 'url' => route('admin.index')], ['label' => $title, 'url' => null]];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Social Media</h1>
-    </div>
-
 
     @if (Session::has('status'))
         <div class="mb-5 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">

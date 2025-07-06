@@ -1,11 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Transportations')
+@php
+    $title = 'Airlines';
+    $breadcrumbs = [['label' => 'Home', 'url' => route('admin.index')], ['label' => $title, 'url' => null]];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Transportations</h1>
-    </div>
 
 
     @if (Session::has('status'))
@@ -60,9 +62,9 @@
                         </td>
                         <td class="my-auto mx-auto">
                             <div class="flex gap-4 justify-center">
-                                <a href="{{ route('admin.transportations.edit', $model->id) }}" class="hover:text-primary">
+                                {{-- <a href="{{ route('admin.transportations.edit', $model->id) }}" class="hover:text-primary">
                                     <i class="fa-solid fa-map-location-dot"></i>
-                                </a>
+                                </a> --}}
 
                                 <a href="{{ route('admin.transportations.edit', $model->id) }}" class="hover:text-primary">
                                     <i class="fa-solid fa-pencil"></i>

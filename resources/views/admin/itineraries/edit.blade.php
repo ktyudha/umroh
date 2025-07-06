@@ -1,7 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Itineraries')
-
+@php
+    $title = 'Itineraries';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => $title, 'url' => route('admin.itineraries.index')],
+        ['label' => 'Edit', 'url' => null],
+    ];
+@endphp
 
 @section('styles')
     <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -19,10 +25,6 @@
 @endsection
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Itineraries</h1>
-    </div>
-
     @if ($errors->any())
         <div class="mt-10 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

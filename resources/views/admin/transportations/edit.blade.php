@@ -1,12 +1,16 @@
 @extends('admin.layout')
 
-@section('title', 'Transportations')
+@php
+    $title = 'Airlines';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => $title, 'url' => route('admin.transportations.index')],
+        ['label' => 'Edit', 'url' => null],
+    ];
+@endphp
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Transportations</h1>
-    </div>
-
     @if ($errors->any())
         <div class="mt-10 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +30,7 @@
         </div>
     @endif
 
-    <div class="mt-10 dark:bg-gray-800 rounded-lg p-6">
+    <div class="dark:bg-gray-800 rounded-lg p-6">
         <form class="form-horizontal flex flex-col gap-4" id="form-transportations"
             action="{{ route('admin.transportations.update', $model->id) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}

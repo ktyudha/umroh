@@ -148,12 +148,12 @@
                         @php
                             $transportationMenus = [
                                 [
-                                    'label' => 'Airline',
+                                    'label' => 'Airlines',
                                     'name' => 'transportations',
                                     'route' => 'admin.transportations.index',
                                 ],
                                 [
-                                    'label' => 'Trip',
+                                    'label' => 'Trips',
                                     'name' => 'transportation-trips',
                                     'route' => 'admin.transportation-trips.index',
                                 ],
