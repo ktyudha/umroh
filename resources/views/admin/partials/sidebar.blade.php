@@ -217,7 +217,7 @@
                     </ul>
                 </li>
             @endif
-            @if (auth()->user()->hasAnyPermission(['itineraries read']) or auth()->user()->hasRole('superadmin'))
+            {{-- @if (auth()->user()->hasAnyPermission(['itineraries read']) or auth()->user()->hasRole('superadmin'))
                 @can('itineraries read')
                     <li>
                         <a href="{{ route('admin.itineraries.index') }}"
@@ -228,7 +228,7 @@
                         </a>
                     </li>
                 @endcan
-            @endif
+            @endif --}}
 
             @if (auth()->user()->hasAnyPermission(['customers read']) or auth()->user()->hasRole('superadmin'))
                 @can('customers read')

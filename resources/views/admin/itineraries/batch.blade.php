@@ -5,7 +5,7 @@
     $breadcrumbs = [
         ['label' => 'Home', 'url' => route('admin.index')],
         ['label' => $title, 'url' => route('admin.itineraries.index')],
-        ['label' => 'Create', 'url' => null],
+        ['label' => 'Batch', 'url' => null],
     ];
 @endphp
 
@@ -80,7 +80,7 @@
                         $existing = $existingItineraries[$date] ?? null;
                     @endphp
 
-                    <div class="flex flex-col gap-2 bg-gray-100 p-2 rounded-lg">
+                    <div class="flex flex-col gap-2 bg-gray-100 dark:bg-gray-900 p-2 rounded-lg">
                         <div>
                             <button type="button"
                                 class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-l-lg text-sm px-2 py-2 text-center mb-2">
