@@ -16,22 +16,19 @@
                         <i class="fa-regular fa-map my-auto mx-4"></i>
                     </div>
                     <div class="flex justify-between lg:min-w-80">
-                        <input type="month" class="rounded w-full border-none text-sm" id="date_departure"
-                            name="date_departure" placeholder="Waktu Keberangkatan" value="{{ request('date_departure') }}">
-                        {{-- <i class="fa-regular fa-calendar text-gray-400 my-auto mx-4"></i> --}}
+                        <input type="month" class="rounded w-full border-none text-sm" id="departure_date"
+                            name="departure_date" placeholder="Waktu Keberangkatan" value="{{ request('departure_date') }}">
                     </div>
 
                     <div class="w-full grid grid-cols-2">
                         <button type="submit" class="bg-[#005354] w-full py-2 text-white"><i
                                 class="fa-solid fa-magnifying-glass"></i></button>
 
-                        {{-- @if (request('search')) --}}
                         <a href="{{ route('schedule.index') }}"
                             class="bg-gray-100 w-full py-2.5 text-center text-gray-500 hover:text-white">
                             <i class="fa-solid fa-rotate-left"></i>
                         </a>
                     </div>
-                    {{-- @endif --}}
                 </form>
             </div>
 
@@ -154,3 +151,18 @@
 
     </section>
 @stop
+
+@section('scripts')
+
+    <script>
+        // Clear Form Filter
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const inputs = this.querySelectorAll('input');
+            inputs.forEach(input => {
+                if (!input.value) {
+                    input.disabled = true;
+                }
+            });
+        });
+    </script>
+@endsection
