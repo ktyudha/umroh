@@ -55,7 +55,7 @@
                         </td>
                         <td class="px-6 py-4">
                             <button type="button"
-                                class="cursor-default text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 uppercase">{{ $model['class'] }}</button>
+                                class="cursor-default text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl font-medium rounded-lg text-sm px-3.5 py-1.5 text-center me-2 mb-2 capitalize">{{ $model['class'] }}</button>
                         </td>
                         <td class="px-6 py-4">
                             {{ $model['capacity'] }} Seat
