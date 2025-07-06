@@ -44,7 +44,7 @@
                         $percentage = $quota > 0 ? ($booked / $quota) * 100 : 0;
                     @endphp
 
-                    <div class="shadow-xl rounded-2xl">
+                    <div class="shadow-xl rounded-2xl bg-white">
                         <div class="relative">
                             <div
                                 class="absolute bg-white text-[#999] px-3 py-1 text-xs font-medium uppercase rounded-tl-2xl rounded-br-2xl">
