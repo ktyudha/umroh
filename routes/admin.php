@@ -61,6 +61,8 @@ Route::group(['prefix' => 'admin-panel', 'as' => 'admin.'], function () {
 
 
         // Itineraries
+        Route::get('itineraries/batch/{slug}', [ItineraryController::class, 'createBatch'])->name('itineraries.batch');
+        Route::post('itineraries/batch', [ItineraryController::class, 'storeBatch'])->name('itineraries.store-batch');
         Route::resource('itineraries', ItineraryController::class);
 
         // Settings

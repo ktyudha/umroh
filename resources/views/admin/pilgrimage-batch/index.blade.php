@@ -65,17 +65,44 @@
                         </td>
                         <td class="my-auto mx-auto">
                             <div class="flex gap-4 justify-center">
-                                <a href="{{ route('admin.pilgrimage-batch.edit', $model->id) }}" class="hover:text-primary">
+
+                                <a href="{{ route('admin.itineraries.batch', $model->slug) }}" class="hover:text-primary"
+                                    data-tooltip-target="tooltip-batch-{{ $model->id }}">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                </a>
+
+                                <a href="{{ route('admin.pilgrimage-batch.edit', $model->id) }}"
+                                    data-tooltip-target="tooltip-batch-edit-{{ $model->id }}"
+                                    class="hover:text-primary">
                                     <i class="fa-solid fa-pencil"></i>
                                 </a>
 
-                                <form action="{{ route('admin.pilgrimage-batch.destroy', $model->id) }}" method="post">
+                                <form action="{{ route('admin.pilgrimage-batch.destroy', $model->id) }}" method="post"
+                                    data-tooltip-target="tooltip-batch-delete-{{ $model->id }}">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                     <button class="hover:text-primary">
                                         <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </form>
+
+                                <div id="tooltip-batch-{{ $model->id }}" role="tooltip"
+                                    class="absolute z-10 invisible inline-block px-1.5 py-0.5 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                                    Itineraries
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+
+                                <div id="tooltip-batch-edit-{{ $model->id }}" role="tooltip"
+                                    class="absolute z-10 invisible inline-block px-1.5 py-0.5 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                                    Edit
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
+
+                                <div id="tooltip-batch-delete-{{ $model->id }}" role="tooltip"
+                                    class="absolute z-10 invisible inline-block px-1.5 py-0.5 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
+                                    Delete
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </div>
                         </td>
                     </tr>

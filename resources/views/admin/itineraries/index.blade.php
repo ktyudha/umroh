@@ -45,7 +45,7 @@
                             <h5 class="font-medium text-black dark:text-white">{{ $model->pilgrimageBatch->name }}</h5>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ parseDate($model->itineraries) }}
+                            {{ parseDate($model->date) }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap capitalize">
                             {{ $model['location'] }}
