@@ -44,7 +44,7 @@
                         $percentage = $quota > 0 ? ($booked / $quota) * 100 : 0;
                     @endphp
 
-                    <div class="shadow-xl rounded-2xl">
+                    <div class="shadow-xl rounded-2xl bg-white">
                         <div class="relative">
                             <div
                                 class="absolute bg-white text-[#999] px-3 py-1 text-xs font-medium uppercase rounded-tl-2xl rounded-br-2xl">
@@ -80,7 +80,7 @@
                                 </div>
 
                                 <p class="text-xs">
-                                    {{ parseDate($schedule->return_date) }}</p>
+                                    {{ $schedule->duration }} Hari</p>
                             </div>
 
                             <div class="flex justify-between mb-1">
@@ -118,7 +118,7 @@
                                 </div>
 
                                 <p class="text-xs">
-                                    {{ $schedule->quota }} pax</p>
+                                    {{ $remaining }} pax</p>
                             </div>
 
                             <div class="flex justify-between mb-2">

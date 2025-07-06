@@ -59,6 +59,17 @@ class PilgrimageBatch extends Model
             : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
     }
 
+    public function getDurationAttribute()
+    {
+        if ($this->departure_date && $this->return_date) {
+            $duration = Carbon::parse($this->departure_date)
+                ->diffInDays(Carbon::parse($this->return_date)) + 1;
+            return round($duration);
+        }
+
+        return null;
+    }
+
     public function scopeFilter($query, $filters)
     {
         if (!empty($filters['search'])) {
