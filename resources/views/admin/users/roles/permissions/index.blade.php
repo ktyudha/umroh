@@ -65,12 +65,6 @@
                 @include('admin.users.roles.permissions.components.itineraries')
             </div>
 
-            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
-                @include('admin.users.roles.permissions.components.customers')
-                @include('admin.users.roles.permissions.components.pilgrimage-types')
-                @include('admin.users.roles.permissions.components.itineraries')
-            </div>
-
             <div class="mr-auto mt-5">
                 <button type="submit"
                     class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center me-2 mb-2">Save</button>
