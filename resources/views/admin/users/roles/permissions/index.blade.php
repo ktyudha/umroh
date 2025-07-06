@@ -36,14 +36,14 @@
             </div>
 
             <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
-                @include('admin.users.roles.permissions.components.customers')
+                @include('admin.users.roles.permissions.components.inboxes')
                 @include('admin.users.roles.permissions.components.testimonis')
-                {{-- @include('admin.users.roles.permissions.components.itineraries') --}}
+                @include('admin.users.roles.permissions.components.settings')
             </div>
 
             <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.customers')
                 @include('admin.users.roles.permissions.components.socials')
-                @include('admin.users.roles.permissions.components.inboxes')
                 @include('admin.users.roles.permissions.components.services')
             </div>
 
