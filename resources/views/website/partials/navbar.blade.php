@@ -12,7 +12,7 @@
 <header>
     <div class="container">
         <div class="logo">
-            <img src="https://flowbite.com/docs/images/logo.svg" alt="Logo Sahabat Nabawi">
+            <img src="{{ asset(@$setting->firstWhere('key', 'logo')->value) }}" alt="Logo Sahabat Nabawi">
             <h1>Sahabat Nabawi</h1>
         </div>
         <nav>
