@@ -3,23 +3,35 @@
 @section('title', 'Jadwal')
 
 @section('content')
-    <section class="schedule-section my-28">
+    <section class="schedule-section py-12 bg-[#f8f8f8]">
         <div class="container">
             <h1 class="font-bold text-2xl text-center">Jadwal Keberangkatan Haji & Umrah</h1>
 
-            <div class="mt-5 justify-between text-center">
-                <form action="" method="get">
-                    <input type="text" class="rounded max-w-96" id="search" name="search"
-                        value="{{ request('search') }}">
-                    <button type="submit" class="bg-blue-500 px-5 py-2 rounded text-white"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="mt-5 w-3/4 mx-auto">
+                <form action="" method="get"
+                    class="flex lg:flex-row flex-col justify-center bg-white p-4 drop-shadow-md rounded-lg">
+                    <div class="flex justify-between border-r border-gray-500 lg:min-w-80">
+                        <input type="text" class="rounded w-full border-none text-sm" id="search" name="search"
+                            placeholder="Paket Umroh" value="{{ request('search') }}">
+                        <i class="fa-regular fa-map my-auto mx-4"></i>
+                    </div>
+                    <div class="flex justify-between lg:min-w-80">
+                        <input type="month" class="rounded w-full border-none text-sm" id="date_departure"
+                            name="date_departure" placeholder="Waktu Keberangkatan" value="{{ request('date_departure') }}">
+                        {{-- <i class="fa-regular fa-calendar text-gray-400 my-auto mx-4"></i> --}}
+                    </div>
 
-                    @if (request('search'))
+                    <div class="w-full grid grid-cols-2">
+                        <button type="submit" class="bg-[#005354] w-full py-2 text-white"><i
+                                class="fa-solid fa-magnifying-glass"></i></button>
+
+                        {{-- @if (request('search')) --}}
                         <a href="{{ route('schedule.index') }}"
-                            class="bg-red-500 px-5 py-2.5 rounded text-white hover:text-white">
-                            <i class="fa-solid fa-x"></i>
+                            class="bg-gray-100 w-full py-2.5 text-center text-gray-500 hover:text-white">
+                            <i class="fa-solid fa-rotate-left"></i>
                         </a>
-                    @endif
+                    </div>
+                    {{-- @endif --}}
                 </form>
             </div>
 
