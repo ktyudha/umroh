@@ -1,13 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Users')
+@php
+    $title = 'Permissions';
+    $breadcrumbs = [['label' => 'Home', 'url' => route('admin.index')], ['label' => $title, 'url' => null]];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Permission</h1>
-    </div>
-
-
     @if (Session::has('status'))
         <div class="mt-10 p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50" role="alert">
             <span class="font-medium">Success alert!</span> {{ session('message') }}
@@ -29,10 +29,40 @@
                 </div>
             </section>
 
-            <div class="grid grid-cols-3 mb-4.5">
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
                 @include('admin.users.roles.permissions.components.users')
                 @include('admin.users.roles.permissions.components.roles')
                 @include('admin.users.roles.permissions.components.permissions')
+            </div>
+
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.customers')
+                @include('admin.users.roles.permissions.components.testimonis')
+                {{-- @include('admin.users.roles.permissions.components.itineraries') --}}
+            </div>
+
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.socials')
+                @include('admin.users.roles.permissions.components.inboxes')
+                @include('admin.users.roles.permissions.components.services')
+            </div>
+
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.blogs')
+                @include('admin.users.roles.permissions.components.blog-categories')
+                @include('admin.users.roles.permissions.components.galleries')
+            </div>
+
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.transportations')
+                @include('admin.users.roles.permissions.components.transportation-trips')
+                @include('admin.users.roles.permissions.components.hotels')
+            </div>
+
+            <div class="grid lg:grid-cols-3 grid-cols-1 mb-4.5">
+                @include('admin.users.roles.permissions.components.pilgrimage-batches')
+                @include('admin.users.roles.permissions.components.pilgrimage-types')
+                @include('admin.users.roles.permissions.components.itineraries')
             </div>
 
             <div class="mr-auto mt-5">

@@ -3,6 +3,13 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use Database\Seeders\Hotel\HotelImageSeeder;
+use Database\Seeders\Hotel\HotelSeeder;
+use Database\Seeders\Pilgrimage\PilgrimageBatchSeeder;
+use Database\Seeders\Pilgrimage\PilgrimageTypeSeeder;
+use Database\Seeders\Transportation\TransportationSeeder;
+use Database\Seeders\Transportation\TransportationTripSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder

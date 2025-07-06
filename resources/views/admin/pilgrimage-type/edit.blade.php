@@ -1,13 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'Pilgrimage Type')
+@php
+    $title = 'Pilgrimage Types';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => $title, 'url' => route('admin.pilgrimage-type.index')],
+        ['label' => 'Edit', 'url' => null],
+    ];
+@endphp
 
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Pilgrimage Type</h1>
-    </div>
-
     @if ($errors->any())
         <div class="mt-10 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
             <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

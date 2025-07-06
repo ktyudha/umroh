@@ -1,12 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'Pilgrimage Batch')
+@php
+    $title = 'Customer';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => 'Customer', 'url' => route('admin.customers.create')],
+    ];
+@endphp
+
+@section('title', $title)
 
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Pilgrimage Batch</h1>
-    </div>
 
     @if ($errors->any())
         <div class="mt-10 flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">

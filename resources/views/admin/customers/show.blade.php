@@ -1,12 +1,17 @@
 @extends('admin.layout')
 
-@section('title', 'Customer')
+@php
+    $title = 'Customer';
+    $breadcrumbs = [
+        ['label' => 'Home', 'url' => route('admin.index')],
+        ['label' => $title, 'url' => route('admin.customers.index')],
+        ['label' => 'Detail', 'url' => null],
+    ];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800 mb-10">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Customer</h1>
-    </div>
-
     <div class="mt-10 dark:bg-gray-800 rounded-lg p-6 ">
         <h4>Individu</h4>
         <div class="grid grid-cols-2 gap-6 mb-6">

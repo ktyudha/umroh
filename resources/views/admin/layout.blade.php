@@ -14,6 +14,7 @@
     @include('admin.partials.sidebar')
 
     <div class="px-6 sm:ml-64 my-20">
+        @include('admin.partials.breadcrumb')
         @yield('content')
     </div>
 

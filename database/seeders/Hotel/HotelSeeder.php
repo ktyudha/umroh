@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Hotel;
 
 use App\Models\Hotel\Hotel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

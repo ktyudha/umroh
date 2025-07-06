@@ -1,12 +1,13 @@
 @extends('admin.layout')
 
-@section('title', 'Users')
+@php
+    $title = 'Inboxes';
+    $breadcrumbs = [['label' => 'Home', 'url' => route('admin.index')], ['label' => $title, 'url' => null]];
+@endphp
+
+@section('title', $title)
 
 @section('content')
-    <div class="block w-full bg-gray-100 py-6 rounded-lg dark:bg-gray-800">
-        <h1 class="text-4xl font-medium text-black px-10 dark:text-white">Inboxes</h1>
-    </div>
-
     <div class="mt-10">
         {{-- <div class="flex justify-between mb-2">
             <a href="{{ route('admin.users.create') }}"
