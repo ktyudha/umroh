@@ -23,59 +23,118 @@
                 </form>
             </div>
 
-            <div class="grid grid-cols-4 mt-5 gap-8">
+            <div class="grid lg:grid-cols-3 grid-cols-1 mt-5 gap-8">
                 @foreach ($schedules as $key => $schedule)
-                    <div>
-                        <img src="{{ asset($schedule->image_url) }}" alt=""
-                            class="w-full aspect-square object-cover rounded-md">
+                    @php
+                        $quota = $schedule->quota;
+                        $booked = $schedule->customers->count();
+                        $remaining = $quota - $booked;
+                        $percentage = $quota > 0 ? ($booked / $quota) * 100 : 0;
+                    @endphp
 
-                        <h3 class="font-semibold text-lg mb-2">{{ $schedule->name }}</h3>
-
-                        <div class="flex justify-between">
-                            <span class="text-xs font-semibold">Type</span>
-                            <span
-                                class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{ $schedule->pilgrimageType->name }}</span>
-                        </div>
-
-                        <div class="flex justify-between">
-                            <span class="text-xs font-semibold">Departure Date</span>
-                            <p class="text-xs">
-                                {{ parseDate($schedule->departure_date) }}</p>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-xs font-semibold">Return Date</span>
-                            <p class="text-xs">{{ parseDate($schedule->return_date) }}</p>
-                        </div>
-                        <div>
-                            <div class="flex justify-between">
-                                <span class="text-xs font-semibold">Sisa seat</span>
-                                <span class="text-xs"> {{ $schedule->quota - $schedule->customers->count() }} /
-                                    {{ $schedule->quota }}
-                                    orang</span>
+                    <div class="shadow-xl rounded-2xl">
+                        <div class="relative">
+                            <div
+                                class="absolute bg-white text-[#999] px-3 py-1 text-xs font-medium uppercase rounded-tl-2xl rounded-br-2xl">
+                                {{ $schedule->pilgrimageType->name }}
                             </div>
-                            @php
-                                $quota = $schedule->quota;
-                                $booked = $schedule->customers->count();
-                                $remaining = $quota - $booked;
-                                $percentage = $quota > 0 ? ($booked / $quota) * 100 : 0;
-                            @endphp
 
-                            <div class="w-full bg-gray-200 rounded-full h-1.5 dark:bg-gray-700 mt-2">
-                                <div class="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
-                                    style="width: {{ $percentage }}%"></div>
+                            <div
+                                class="absolute bottom-0 right-0 bg-white text-[#32a067] px-3 py-1 text-sm font-medium rounded-tl-2xl">
+                                {{ formatRupiah($schedule->price) }} <span class="text-[#999]">/pax</span>
                             </div>
+
+                            <img src="{{ asset($schedule->image_url) }}" alt=""
+                                class="w-full w-full h-72 object-cover object-top rounded-t-2xl">
                         </div>
 
-                        <div>
-                            <span class="text-xs font-semibold">Price</span>
-                            <p class="text-lg">{{ formatRupiah($schedule->price) }}</p>
-                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-xl mb-2 min-h-[3.5rem] line-clamp-2">{{ $schedule->name }}</h3>
 
-                        <a href="{{ $quota <= $booked ? '#' : route('schedule.show', $schedule->slug) }}"
-                            class="mt-2 w-full inline-block text-center bg-blue-500 text-white hover:text-white py-1 rounded 
+                            <div class="flex justify-between mb-2">
+                                <div class="text-xs">
+                                    <i class="fa-regular fa-calendar text-xs mr-2"></i>
+                                    <span>Jadwal Berangkat</span>
+                                </div>
+
+                                <p class="text-xs">
+                                    {{ parseDate($schedule->departure_date) }}</p>
+                            </div>
+
+                            <div class="flex justify-between mb-1">
+                                <div class="text-xs">
+                                    <i class="fa-regular fa-clock text-xs mr-2"></i>
+                                    <span>Durasi Perjalanan</span>
+                                </div>
+
+                                <p class="text-xs">
+                                    {{ parseDate($schedule->return_date) }}</p>
+                            </div>
+
+                            <div class="flex justify-between mb-1">
+                                <div class="text-xs my-auto">
+                                    <i class="fa-solid fa-hotel text-xs mr-2"></i>
+                                    <span>Kelas Hotel</span>
+                                </div>
+
+                                <span class="my-auto">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $schedule->hotels[0]['rating'])
+                                            <i class="fa-solid fa-star text-xs text-orange-400"></i>
+                                        @else
+                                            <i class="fa-regular fa-star text-xs text-gray-300"></i>
+                                        @endif
+                                    @endfor
+                                </span>
+                            </div>
+
+
+                            <div class="flex justify-between mb-2">
+                                <div class="text-xs">
+                                    <i class="fa-solid fa-user text-xs mr-2"></i>
+                                    <span>Total Seat</span>
+                                </div>
+
+                                <p class="text-xs">
+                                    {{ $schedule->quota }} pax</p>
+                            </div>
+
+                            <div class="flex justify-between mb-2">
+                                <div class="text-xs">
+                                    <i class="fa-solid fa-user text-xs mr-2"></i>
+                                    <span>Seat Tersedia</span>
+                                </div>
+
+                                <p class="text-xs">
+                                    {{ $schedule->quota }} pax</p>
+                            </div>
+
+                            <div class="flex justify-between mb-2">
+                                <div class="text-xs">
+                                    <i class="fa-solid fa-location-dot text-xs mr-2"></i>
+                                    <span>Berangkat dari</span>
+                                </div>
+
+                                <p class="text-xs uppercase">
+                                    {{ $schedule->itineraries->first()->location ?? '' }}</p>
+                            </div>
+
+                            <div class="flex justify-between mb-2">
+                                <div class="text-xs">
+                                    <i class="fa-solid fa-plane-departure text-xs mr-2"></i>
+                                    <span>Maskapai</span>
+                                </div>
+
+                                <p class="text-xs">
+                                    {{ $schedule->transportationTrips[0]->transportation->name ?? '' }}</p>
+                            </div>
+
+                            <a href="{{ $quota <= $booked ? '#' : route('schedule.show', $schedule->slug) }}"
+                                class="mt-2 w-full inline-block text-center bg-[#005354] text-white hover:text-white py-2.5 rounded-full
           {{ $quota <= $booked ? 'cursor-not-allowed opacity-50 pointer-events-none' : '' }}">
-                            Detail Paket
-                        </a>
+                                Lihat Detail
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
