@@ -19,8 +19,8 @@ class CustomerController extends Controller
         // $this->middleware('permission:pilgrimage type update')->only('edit', 'update');
         // $this->middleware('permission:pilgrimage type delete')->only('destroy');
 
-        view()->share('menuActive', 'customer');
-        view()->share('subMenuActive', 'customer');
+        view()->share('menuActive', 'customers');
+        view()->share('subMenuActive', 'customers');
     }
     /**
      * Display a listing of the resource.

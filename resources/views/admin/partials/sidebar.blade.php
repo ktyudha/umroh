@@ -57,19 +57,17 @@
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
-            {{-- @if (auth()->user()->hasRole('superadmin'))
+            @if (auth()->user()->hasRole('superadmin'))
                 <li class="text-gray-400">Master</li>
-            @endif --}}
+            @endif
+            @php
+                $styleActive = 'text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700';
+            @endphp
             <li>
                 <a href="{{ route('admin.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                        <path
-                            d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
-                        <path
-                            d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
-                    </svg>
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if ($menuActive == 'dashboard') {{ $styleActive }} @endif">
+                    <i
+                        class="fa-solid fa-home shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'dashboard') text-white @endif"></i>
                     <span class="ms-3">Dashboard</span>
                 </a>
             </li>
@@ -77,12 +75,12 @@
                 @can('settings')
                     <li>
                         <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 @if ($menuActive == 'settings') {{ $styleActive }} @endif"
                             aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                             <i
-                                class="fa-solid fa-gear shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-gear shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'settings') text-white @endif"></i>
                             <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Settings</span>
-                            <i class="fa-solid fa-chevron-down w-3 h-3"></i>
+                            <i class="fa-solid fa-chevron-down w-3 h-3 mr-2"></i>
                         </button>
                         @php
                             $settingMenus = [
@@ -113,7 +111,7 @@
                             @foreach ($settingMenus as $menu)
                                 <li>
                                     <a href="{{ route($menu['route']) }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 @if ($menuActive == 'settings' && $subMenuActive == $menu['name']) bg-gray-100 @endif">{{ $menu['label'] }}</a>
                                 </li>
                             @endforeach
                         </ul>
@@ -125,52 +123,56 @@
                 @can('hotels read')
                     <li>
                         <a href="{{ route('admin.hotels.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if ($menuActive == 'hotels') {{ $styleActive }} @endif">
                             <i
-                                class="fa-solid fa-hotel shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-hotel shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'hotels') text-white @endif"></i>
                             <span class="ms-3">Hotel</span>
                         </a>
                     </li>
                 @endcan
             @endif
 
-            @if (auth()->user()->hasAnyPermission(['settings']) or auth()->user()->hasRole('superadmin'))
-                @can('settings')
-                    <li>
-                        <button type="button"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                            aria-controls="dropdown-transportations" data-collapse-toggle="dropdown-transportations">
-                            <i
-                                class="fa-solid fa-plane-departure shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Transportations</span>
-                            <i class="fa-solid fa-chevron-down w-3 h-3"></i>
-                        </button>
-                        @php
-                            $transportationMenus = [
-                                [
-                                    'label' => 'Airlines',
-                                    'name' => 'transportations',
-                                    'route' => 'admin.transportations.index',
-                                ],
-                                [
-                                    'label' => 'Trips',
-                                    'name' => 'transportation-trips',
-                                    'route' => 'admin.transportation-trips.index',
-                                ],
-                            ];
+            @if (auth()->user()->hasAnyPermission(['transportations']) or auth()->user()->hasRole('superadmin'))
 
-                        @endphp
-                        <ul id="dropdown-transportations"
-                            class="@if ($menuActive != 'transportations') hidden @endif py-2 space-y-2">
-                            @foreach ($transportationMenus as $menu)
+                <li>
+                    <button type="button"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 @if ($menuActive == 'transportations') {{ $styleActive }} @endif"
+                        aria-controls="dropdown-transportations" data-collapse-toggle="dropdown-transportations">
+                        <i
+                            class="fa-solid fa-plane-departure shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'transportations') text-white @endif"></i>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Transportations</span>
+                        <i class="fa-solid fa-chevron-down w-3 h-3 mr-2"></i>
+                    </button>
+                    @php
+                        $transportationMenus = [
+                            [
+                                'label' => 'Airlines',
+                                'name' => 'transportation-airlines',
+                                'permission' => 'transportations read',
+                                'route' => 'admin.transportations.index',
+                            ],
+                            [
+                                'label' => 'Trips',
+                                'name' => 'transportation-trips',
+                                'permission' => 'transportation trips read',
+                                'route' => 'admin.transportation-trips.index',
+                            ],
+                        ];
+
+                    @endphp
+                    <ul id="dropdown-transportations"
+                        class="@if ($menuActive != 'transportations') hidden @endif py-2 space-y-2">
+                        @foreach ($transportationMenus as $menu)
+                            @can($menu['permission'])
                                 <li>
                                     <a href="{{ route($menu['route']) }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700  @if ($menuActive == 'transportations' && $subMenuActive == $menu['name']) bg-gray-100 @endif">{{ $menu['label'] }}</a>
                                 </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                @endcan
+                            @endcan
+                        @endforeach
+                    </ul>
+                </li>
+
             @endif
 
 
@@ -178,10 +180,10 @@
                     auth()->user()->hasRole('superadmin'))
                 <li>
                     <button type="button"
-                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 @if ($menuActive == 'pilgrimage') {{ $styleActive }} @endif"
                         aria-controls="dropdown-pilgrimage" data-collapse-toggle="dropdown-pilgrimage">
                         <i
-                            class="fa-solid fa-kaaba shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                            class="fa-solid fa-kaaba shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'pilgrimage') text-white @endif"></i>
                         <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Pilgrimage</span>
                         <i class="fa-solid fa-chevron-down w-3 h-3"></i>
                     </button>
@@ -201,12 +203,13 @@
                             ],
                         ];
                     @endphp
-                    <ul id="dropdown-pilgrimage" class="@if ($menuActive != 'pilgrimage') hidden @endif py-2 space-y-2">
+                    <ul id="dropdown-pilgrimage"
+                        class="@if ($menuActive != 'pilgrimage') hidden @endif py-2 space-y-2">
                         @foreach ($pilgrimageMenus as $menu)
                             @can($menu['permission'])
                                 <li>
                                     <a href="{{ route($menu['route']) }}"
-                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">{{ $menu['label'] }}</a>
+                                        class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 @if ($menuActive == 'pilgrimage' && $subMenuActive == $menu['name']) bg-gray-100 @endif">{{ $menu['label'] }}</a>
                                 </li>
                             @endcan
                         @endforeach
@@ -217,9 +220,9 @@
                 @can('itineraries read')
                     <li>
                         <a href="{{ route('admin.itineraries.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if ($menuActive == 'itineraries') {{ $styleActive }} @endif">
                             <i
-                                class="fa-solid fa-map-location-dot shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-map-location-dot shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'itineraries') text-white @endif"></i>
                             <span class="ms-3">Itineraries</span>
                         </a>
                     </li>
@@ -230,9 +233,9 @@
                 @can('customers read')
                     <li>
                         <a href="{{ route('admin.customers.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group @if ($menuActive == 'customers') {{ $styleActive }} @endif">
                             <i
-                                class="fa-solid fa-user-group shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-user-group shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'customers') text-white @endif"></i>
                             <span class="ms-3">Customer</span>
                         </a>
                     </li>
@@ -258,9 +261,9 @@
                 @can('users read')
                     <li>
                         <a href="{{ route('admin.users.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group  @if ($menuActive == 'users' && $subMenuActive == 'users') {{ $styleActive }} @endif">
                             <i
-                                class="fa-solid fa-user shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-user shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'users' && $subMenuActive == 'users') text-white @endif"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
                         </a>
                     </li>
@@ -269,9 +272,9 @@
                 @can('roles read')
                     <li>
                         <a href="{{ route('admin.roles.index') }}"
-                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group  @if ($menuActive == 'users' && $subMenuActive == 'roleAndPermissions') {{ $styleActive }} @endif">
                             <i
-                                class="fa-solid fa-users-gear shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"></i>
+                                class="fa-solid fa-users-gear shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 dark:group-hover:text-white @if ($menuActive == 'users' && $subMenuActive == 'roleAndPermissions') text-white @endif"></i>
                             <span class="flex-1 ms-3 whitespace-nowrap">Roles</span>
                         </a>
                     </li>

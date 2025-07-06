@@ -12,7 +12,7 @@ class TransportationTripController extends Controller
     public function __construct()
     {
         view()->share('menuActive', 'transportations');
-        view()->share('subMenuActive', 'transportation-trip');
+        view()->share('subMenuActive', 'transportation-trips');
     }
     /**
      * Display a listing of the resource.
