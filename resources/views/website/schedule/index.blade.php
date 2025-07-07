@@ -53,7 +53,7 @@
 
                             <div
                                 class="absolute bottom-0 right-0 bg-white text-[#32a067] px-3 py-1 text-sm font-medium rounded-tl-2xl">
-                                {{ formatRupiah($schedule->price) }} <span class="text-[#999]">/pax</span>
+                                {{ formatRupiah($schedule->price, 'Rp', ',-') }} <span class="text-[#999]">/pax</span>
                             </div>
 
                             <img src="{{ asset($schedule->image_url) }}" alt=""
