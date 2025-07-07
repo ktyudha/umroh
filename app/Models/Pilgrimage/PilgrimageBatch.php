@@ -30,6 +30,10 @@ class PilgrimageBatch extends Model
         'image'
     ];
 
+    protected $casts = [
+        'departure_date' => 'date',
+    ];
+
     public function sluggable(): array
     {
         return [
