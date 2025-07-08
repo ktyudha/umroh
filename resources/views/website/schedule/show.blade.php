@@ -18,7 +18,7 @@
     </section>
     <section class="bg-[#f3f8f6]">
         <div class="max-w-screen-lg grid lg:grid-cols-2 lg:gap-0 gap-4 mx-auto py-8 lg:px-0 px-6">
-            <div class="grid grid-cols-2 gap-4 justify-center w-full mx-auto order-2">
+            <div class="grid grid-cols-2 gap-4 justify-center w-full mx-auto lg:order-1 order-2">
                 <div class="flex items-start gap-3">
                     <div class="w-10 h-10 rounded-full bg-[#005354] text-white inline-flex items-center justify-center">
                         <i class="fa-solid fa-rocket text-xl"></i>
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div
-                class="flex lg:flex-col flex-row lg:items-end items-center lg:justify-end justify-between lg:gap-2 gap-6 w-full mx-auto">
+                class="flex lg:flex-col flex-row lg:items-end items-center lg:justify-end justify-between lg:gap-2 gap-6 w-full mx-auto lg:order-2 order-1">
                 <div class="flex flex-col lg:gap-0 gap-1">
                     <p class="lg:text-right text-gray-700 font-medium lg:text-xl text-md">Mulai dari</p>
                     <p class="text-orange-500 font-semibold lg:text-3xl text-xl">{{ formatRupiah($schedule->price) }} </p>
