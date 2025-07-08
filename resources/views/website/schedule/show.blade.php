@@ -63,7 +63,7 @@
                 <div class="flex flex-col lg:gap-0 gap-1">
                     <p class="lg:text-right text-gray-700 font-medium lg:text-xl text-md">Mulai dari</p>
                     <p class="text-orange-500 font-semibold lg:text-3xl text-xl">{{ formatRupiah($schedule->price) }} </p>
-                    <p class="text-gray-400 font-regular text-sm">Per pax Jamaah</p>
+                    <p class="lg:text-right text-gray-400 font-regular text-sm">Per pax Jamaah</p>
                 </div>
                 <a href="#detail-schedule"
                     class="bg-orange-500 px-4 py-2 rounded-md text-white text-md hover:text-white">Lihat
