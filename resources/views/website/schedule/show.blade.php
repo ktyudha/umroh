@@ -94,7 +94,7 @@
             </div>
         </div>
     </section>
-    <section class="max-w-screen-lg mx-auto" id="detail-schedule">
+    <section class="max-w-screen-lg mx-auto mb-20" id="detail-schedule">
         <div class="lg:w-4/6 w-full lg:px-0 px-6">
             <div class="border-b mb-6 flex justify-between">
                 <div class="flex gap-4">
@@ -111,7 +111,7 @@
                 </a>
             </div>
 
-            <img src="{{ asset('storage/' . $schedule->image) }}" alt="" class="w-full rounded-md">
+            <img src="{{ asset('storage/' . $schedule->image) }}" alt="" class="w-full rounded-md mb-14">
 
             <div class="border-b mb-6 flex justify-between mt-8" id="hotel">
                 <div class="flex gap-4">
