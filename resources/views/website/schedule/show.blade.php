@@ -85,10 +85,11 @@
                     </span>
                 </div>
                 <div class="flex items-end justify-end">
-                    <button type="button"
+                    <a href="https://api.whatsapp.com/send?phone=&text={{ route('schedule.show', $schedule->slug) }}"
+                        target="_blank"
                         class="bg-gray-100 hover:bg-[#005354] px-4 py-3 rounded-full text-xs text-gray-500 hover:text-white"><i
-                            class="fa-solid fa-print mr-2"></i>
-                        Print Paket</button>
+                            class="fa-brands fa-whatsapp text-sm mr-1"></i>
+                        WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -103,11 +104,11 @@
                     <p class="text-md text-[#005354] font-medium my-auto">Deskripsi</p>
                 </div>
 
-                <button type="button"
-                    class="px-4 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white">
+                <a href="{{ asset('storage/' . $schedule->image) }}" download="img-{{ $schedule->slug }}"
+                    class="px-4 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white hover:text-white">
                     <i class="fa-solid fa-print text-xs mr-2"></i>
                     Download Flayer
-                </button>
+                </a>
             </div>
 
             <img src="{{ asset('storage/' . $schedule->image) }}" alt="" class="w-full rounded-md">
@@ -150,6 +151,12 @@
                     </div>
                     <p class="text-md text-[#005354] font-medium my-auto">Itinerari</p>
                 </div>
+
+                <a href="{{ asset('storage/' . $schedule->image) }}" download="img-{{ $schedule->slug }}"
+                    class="px-4 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white hover:text-white">
+                    <i class="fa-solid fa-print text-xs mr-2"></i>
+                    Print Itinerary
+                </a>
             </div>
 
             @include('website.schedule.partials.itinerary')
