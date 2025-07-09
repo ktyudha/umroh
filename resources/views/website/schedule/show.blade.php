@@ -132,14 +132,16 @@
                 </div>
             </div>
 
-            <div class="border-b mb-6 flex justify-between mt-8" id="hotel">
+            @include('website.schedule.partials.airline')
+
+            {{-- <div class="border-b mb-6 flex justify-between mt-8" id="hotel">
                 <div class="flex gap-4">
                     <div class="w-8 h-8 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white">
                         <i class="fa-solid fa-bus text-xs"></i>
                     </div>
                     <p class="text-md text-[#005354] font-medium my-auto">Transportasi</p>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="border-b mb-4 flex justify-between mt-8" id="hotel">
                 <div class="flex gap-4">

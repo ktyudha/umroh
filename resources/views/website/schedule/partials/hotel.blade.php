@@ -3,13 +3,13 @@
         class="flex lg:flex-row flex-col lg:gap-6 gap-4 @if ($key != 0) pt-6 border-t-2 border-dashed @endif pb-6 ">
         <div class="lg:w-2/5 bg-black rounded-2xl">
             <img src="{{ asset($hotel->images[0]->imageUrl) }}" alt="img-{{ $hotel->slug }}"
-                class="object-cover aspect-square rounded-xl">
+                class="object-cover aspect-[4/3] rounded-xl">
         </div>
         <div class="lg:w-3/5 flex flex-col gap-2">
             <h4 class="font-semibold text-xl uppercase cursor-pointer hover:underline"
                 data-modal-target="hotel-modal-{{ $hotel->slug }}" data-modal-toggle="hotel-modal-{{ $hotel->slug }}">
                 {{ $hotel->name }}</h4>
-            <div class="bg-gray-100 px-4 py-1.5 rounded-lg flex justify-between mb-2">
+            <div class="text-md bg-gray-100 px-4 py-1.5 rounded-lg flex justify-between mb-2">
                 <p class="font-medium text-gray-500">Hotel Rate</p>
                 <span class="my-auto">
                     @for ($i = 1; $i <= 5; $i++)
