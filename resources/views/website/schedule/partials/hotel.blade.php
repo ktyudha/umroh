@@ -1,5 +1,6 @@
 @foreach ($schedule->hotels as $key => $hotel)
-    <div class="flex lg:flex-row flex-col lg:mb-2 mb-10 lg:gap-6 gap-4">
+    <div
+        class="flex lg:flex-row flex-col lg:gap-6 gap-4 @if ($key != 0) pt-6 border-t-2 border-dashed @endif pb-6 ">
         <div class="lg:w-2/5 bg-black rounded-2xl">
             <img src="{{ asset($hotel->images[0]->imageUrl) }}" alt="img-{{ $hotel->slug }}"
                 class="object-cover aspect-square rounded-xl">
