@@ -31,7 +31,8 @@ class PilgrimageBatch extends Model
     ];
 
     protected $casts = [
-        'departure_date' => 'date',
+        'departure_date' => 'datetime',
+        'return_date' => 'datetime',
     ];
 
     public function sluggable(): array

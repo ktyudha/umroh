@@ -121,6 +121,8 @@
                 </div>
             </div>
 
+            @include('website.schedule.partials.hotel')
+
             <div class="border-b mb-6 flex justify-between mt-8" id="hotel">
                 <div class="flex gap-4">
                     <div class="w-8 h-8 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white">
