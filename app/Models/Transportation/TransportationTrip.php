@@ -19,6 +19,11 @@ class TransportationTrip extends Model
         'status'
     ];
 
+    protected $casts = [
+        'date_departure' => 'datetime',
+        'date_return' => 'datetime',
+    ];
+
     protected function fromAirport(): Attribute
     {
         return Attribute::make(

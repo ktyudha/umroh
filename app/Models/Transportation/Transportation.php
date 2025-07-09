@@ -29,6 +29,13 @@ class Transportation extends Model
         ];
     }
 
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? asset('storage/' . $this->image)
+            : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
+    }
+
     public function trips()
     {
         $this->hasMany(TransportationTrip::class);

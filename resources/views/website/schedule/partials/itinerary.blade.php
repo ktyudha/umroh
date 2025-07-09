@@ -15,7 +15,7 @@
                         class="relative inline-flex items-center justify-center p-0.5 mb-2 overflow-hidden text-xs font-medium text-gray-900 rounded-r-lg group bg-[#005354]">
                         <span
                             class="relative px-1.5 py-1.5 transition-all ease-in duration-75 bg-gray-100 dark:bg-gray-900 rounded-r-md">
-                            {{ parseDate($itinerary->date) }}
+                            {{ $itinerary->date->format('d M Y') }}
                         </span>
                     </button>
                 </div>

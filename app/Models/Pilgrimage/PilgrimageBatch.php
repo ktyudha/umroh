@@ -31,7 +31,8 @@ class PilgrimageBatch extends Model
     ];
 
     protected $casts = [
-        'departure_date' => 'date',
+        'departure_date' => 'datetime',
+        'return_date' => 'datetime',
     ];
 
     public function sluggable(): array
@@ -105,11 +106,13 @@ class PilgrimageBatch extends Model
 
     public function transportationTrips()
     {
-        return $this->belongsToMany(TransportationTrip::class, 'pilgrimage_batch_trip')->withTimestamps();
+        return $this->belongsToMany(TransportationTrip::class, 'pilgrimage_batch_trip')->orderBy('date_departure', 'asc')->withTimestamps();
     }
 
     public function itineraries()
     {
-        return $this->hasMany(Itinerary::class)->orderBy('date', 'asc');
+        return $this->hasMany(Itinerary::class)
+            ->whereBetween('date', [$this->departure_date, $this->return_date])
+            ->orderBy('date', 'asc');
     }
 }

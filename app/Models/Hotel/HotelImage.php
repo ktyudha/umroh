@@ -11,6 +11,13 @@ class HotelImage extends Model
         'image'
     ];
 
+    public function getImageUrlAttribute()
+    {
+        return $this->image
+            ? asset('storage/' . $this->image)
+            : asset('static/admin/images/default.png'); // fallback jika tidak ada gambar
+    }
+
     public function hotel()
     {
         return $this->belongsTo(Hotel::class);
