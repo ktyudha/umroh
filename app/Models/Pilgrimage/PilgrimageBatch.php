@@ -110,6 +110,8 @@ class PilgrimageBatch extends Model
 
     public function itineraries()
     {
-        return $this->hasMany(Itinerary::class)->orderBy('date', 'asc');
+        return $this->hasMany(Itinerary::class)
+            ->whereBetween('date', [$this->departure_date, $this->return_date])
+            ->orderBy('date', 'asc');
     }
 }
