@@ -13,8 +13,8 @@
                     class="flex lg:flex-row flex-col gap-2 justify-center bg-white p-4 drop-shadow-md rounded-lg">
                     <div class="flex justify-between lg:border-r border-gray-500 lg:min-w-80">
                         <input type="text" class="rounded w-full border-none text-sm" id="search" name="search"
-                            placeholder="Paket Umroh" value="{{ request('search') }}">
-                        <i class="fa-regular fa-map my-auto mx-4"></i>
+                            placeholder="Cari paket" value="{{ request('search') }}">
+                        <i class="fa-solid fa-kaaba my-auto mx-4"></i>
                     </div>
                     <div class="flex justify-between lg:min-w-80">
                         <input type="month" class="rounded w-full border-none text-sm appearance-none" id="departure_date"
