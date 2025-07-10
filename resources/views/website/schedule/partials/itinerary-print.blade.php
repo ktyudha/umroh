@@ -64,8 +64,7 @@
 <body>
 
     <div class="header">
-        <img src="{{ public_path('storage/setting/' . basename($setting->firstWhere('key', 'logo')->value)) }}"
-            alt="Logo">
+        <img src="{{ public_path('static/assets/logo-zamira.png') }}" alt="Logo">
         <h2 style="text-transform: uppercase; margin-bottom:0px !important;">Itinerary
             {{ $setting->firstWhere('key', 'name')->value }}
             <br>
