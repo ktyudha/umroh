@@ -28,6 +28,12 @@ class ScheduleController extends Controller
     public function show(string $slug)
     {
         $data['schedule'] = PilgrimageBatch::where('slug', $slug)->first();
+        $data['schedules'] = PilgrimageBatch::where('pilgrimage_type_id', $data['schedule']->pilgrimage_type_id)
+            ->where('slug', '!=', $slug)
+            ->orderBy('created_at', 'DESC')
+            ->take(3)
+            ->get();
+
         return view('website.schedule.show', $data);
     }
 }

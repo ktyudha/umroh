@@ -94,7 +94,7 @@
             </div>
         </div>
     </section>
-    <section class="max-w-screen-lg mx-auto mb-20" id="detail-schedule">
+    <section class="max-w-screen-lg mx-auto mb-20 lg:flex lg:gap-6" id="detail-schedule">
         <div class="lg:w-4/6 w-full lg:px-0 px-6">
             <div class="border-b mb-6 flex justify-between">
                 <div class="flex gap-4">
@@ -169,6 +169,11 @@
                     <p class="text-md text-[#005354] font-medium my-auto">Fasilitas</p>
                 </div>
             </div> --}}
+        </div>
+        <div class="lg:w-2/6 w-full lg:px-0 px-6 flex flex-col gap-6">
+            @include('website.schedule.partials.information')
+            @include('website.schedule.partials.service')
+            @include('website.schedule.partials.another-package')
         </div>
     </section>
 @stop
