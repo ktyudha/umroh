@@ -12,8 +12,9 @@
 <header>
     <div class="container">
         <div class="logo">
-            <img src="{{ asset(@$setting->firstWhere('key', 'logo')->value) }}" alt="Logo Sahabat Nabawi">
-            <h1>Sahabat Nabawi</h1>
+            <img src="{{ asset(@$setting->firstWhere('key', 'logo')->value) }}" alt="Logo Sahabat Nabawi"
+                style="height:50px;">
+            {{-- <h1>Sahabat Nabawi</h1> --}}
         </div>
         <nav>
             <ul>
