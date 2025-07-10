@@ -178,4 +178,6 @@
             @include('website.schedule.partials.another-package')
         </div>
     </section>
+
+    @include('website.schedule.partials.floating')
 @stop
