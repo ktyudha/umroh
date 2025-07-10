@@ -1,4 +1,4 @@
-<section class="rounded-lg p-4 bg-[#f3f8f6] lg:display hidden">
+<section class="rounded-lg p-4 bg-[#f3f8f6] lg:flex hidden">
     <a href="https://api.whatsapp.com/send?phone={{ @$setting->firstWhere('key', 'whatsapp')->value }}&text={{ route('schedule.show', $schedule->slug) }}"
         target="_blank"
         class="bg-[#25D366] flex items-center justify-center gap-2 w-full rounded-lg py-2 text-white font-medium hover:text-white">
