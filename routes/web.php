@@ -26,3 +26,4 @@ Route::get('/regulation', [RegulationController::class, 'index'])->name('regulat
 
 Route::get('/schedule', [ScheduleController::class, 'index'])->name('schedule.index');
 Route::get('/schedule/{slug}', [ScheduleController::class, 'show'])->name('schedule.show');
+Route::get('/schedule/print/{slug}', [ScheduleController::class, 'printItinerary'])->name('schedule.print');
