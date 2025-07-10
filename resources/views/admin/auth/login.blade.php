@@ -2,11 +2,14 @@
 @section('title', 'Sign in')
 @section('content')
     <section class="bg-gray-50 dark:bg-gray-900">
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <div class="min-h-screen flex flex-col justify-center items-center px-6 py-8">
             <a href="{{ route('landing.index') }}"
                 class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white cursor-pointer">
-                <img class="h-20 mr-2" src="{{ asset('static/assets/logo-zamira-landscape-transparent.png') }}" alt="logo"
-                    class="mx-auto">
+                <img class="h-20 mr-2 dark:hidden" src="{{ asset('static/assets/logo-zamira-landscape-transparent.png') }}"
+                    alt="logo">
+
+                <img class="h-20 mr-2 hidden dark:inline"
+                    src="{{ asset('static/assets/logo-zamira-landscape-dark-transparent.png') }}" alt="logo">
             </a>
             <div
                 class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
