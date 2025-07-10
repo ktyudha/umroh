@@ -64,3 +64,8 @@ if (!function_exists('generateFlightNumber')) {
         return strtoupper($airlineCode) . '-' . $number;
     }
 }
+
+function remove_emojis($string)
+{
+    return preg_replace('/[\x{1F300}-\x{1FAFF}\x{1F1E6}-\x{1F1FF}]/u', '', $string);
+}

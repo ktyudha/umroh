@@ -106,7 +106,7 @@
 
                 <a href="{{ asset('storage/' . $schedule->image) }}" download="img-{{ $schedule->slug }}"
                     class="px-4 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white hover:text-white">
-                    <i class="fa-solid fa-print text-xs mr-2"></i>
+                    <i class="fa-solid fa-download text-xs mr-2"></i>
                     Download Flayer
                 </a>
             </div>
@@ -152,7 +152,7 @@
                     <p class="text-md text-[#005354] font-medium my-auto">Itinerari</p>
                 </div>
 
-                <a href="{{ asset('storage/' . $schedule->image) }}" download="img-{{ $schedule->slug }}"
+                <a href="{{ route('schedule.print', $schedule->slug) }}" target="_blank"
                     class="px-4 rounded-t-lg bg-[#005354] inline-flex items-center justify-center text-white hover:text-white">
                     <i class="fa-solid fa-print text-xs mr-2"></i>
                     Print Itinerary

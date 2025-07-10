@@ -14,9 +14,15 @@
                     </svg>
                 </button>
                 <a href="{{ route('admin.index') }}" class="flex ms-2 md:me-24">
-                    <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt=" Logo" />
-                    <span
-                        class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Zamira</span>
+                    <!-- Logo untuk Light Mode -->
+                    <img src="{{ asset('static/assets/logo-zamira-landscape.png') }}" class="h-10 me-3 dark:hidden"
+                        alt="Logo Light" />
+
+                    <!-- Logo untuk Dark Mode -->
+                    <img src="{{ asset('static/assets/logo-zamira-landscape-dark-transparent.png') }}"
+                        class="h-10 me-3 hidden dark:inline" alt="Logo Dark" />
+                    {{-- <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">PT.
+                        Zamira</span> --}}
                 </a>
             </div>
             <div class="flex items-center">
