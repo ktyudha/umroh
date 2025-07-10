@@ -75,8 +75,8 @@
              </div>
              <!-- Modal body -->
              <div class="px-4 pb-4 md:px-5 md:pb-5">
-                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700 ">
-                     <ul class="flex  -mb-px text-sm font-medium text-center overflow-x-auto whitespace-nowrap"
+                 <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center"
                          id="hotel-styled-tab-{{ $key }}"
                          data-tabs-toggle="#hotel-styled-tab-content-{{ $key }}"
                          data-tabs-active-classes="text-[#005354] hover:text-[#005354] dark:text-[#005354] dark:hover:text-[#005354] border-[#005354] dark:border-[#005354]"

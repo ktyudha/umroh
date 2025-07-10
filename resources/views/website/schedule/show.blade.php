@@ -111,7 +111,9 @@
                 </a>
             </div>
 
-            <img src="{{ asset('storage/' . $schedule->image) }}" alt="" class="w-full rounded-md mb-14">
+            <img src="{{ asset('storage/' . $schedule->image) }}" alt=""
+                class="w-full rounded-md mb-14 hover:cursor-pointer" data-modal-target="hotel-modal-detail"
+                data-modal-toggle="hotel-modal-detail">
 
             <div class="border-b mb-6 flex justify-between mt-8" id="hotel">
                 <div class="flex gap-4">
