@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     {{-- <link rel="shortcut icon" href="{{ asset('static/assets/logo-zamira-only.png') }}" type="image/x-icon"> --}}
-    <title>{{ $setting->firstWhere('key', 'name')->value }} - Itinerary {{ $schedule->name ?? 'Jadwal Keberangkatan' }}
+    <title>{{ @$setting->firstWhere('key', 'name')->value }} - Itinerary {{ $schedule->name ?? 'Jadwal Keberangkatan' }}
     </title>
     <style>
         body {
@@ -66,7 +66,7 @@
     <div class="header">
         <img src="{{ public_path('static/assets/logo-zamira.png') }}" alt="Logo">
         <h2 style="text-transform: uppercase; margin-bottom:0px !important;">Itinerary
-            {{ $setting->firstWhere('key', 'name')->value }}
+            {{ @$setting->firstWhere('key', 'name')->value }}
             <br>
             Paket {{ $schedule->pilgrimageType->name }}
         </h2>
