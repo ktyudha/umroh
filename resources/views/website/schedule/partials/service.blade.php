@@ -10,7 +10,7 @@
         Informasi Paket</button>
 </section>
 
-<div class="fixed bottom-4 left-4 right-4 flex flex-col gap-2 sm:hidden z-50">
+<div class="fixed bottom-4 left-4 right-4 flex flex-col gap-2 sm:hidden z-10">
     <!-- Tombol WhatsApp -->
     <a href="https://api.whatsapp.com/send?phone={{ @$setting->firstWhere('key', 'whatsapp')->value }}&text={{ route('schedule.show', $schedule->slug) }}"
         target="_blank"
