@@ -53,8 +53,8 @@
                                 alt="{{ $model->name }}" class="max-w-20 object-cover aspect-square">
                         </td>
                         <td class="px-6 py-4">
-                            <h5 class="font-medium text-black dark:text-white">{{ $model['name'] }}</h5>
-                            {{ $model['description'] }}
+                            <h5 class="font-medium text-black dark:text-white whitespace-nowrap">{{ $model['name'] }}</h5>
+                            {{ read_more($model['description']) }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             @for ($i = 1; $i <= 5; $i++)
@@ -65,8 +65,8 @@
                                 @endif
                             @endfor
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $model['address'] }}
+                        <td class="px-6 py-4 min-w-60">
+                            <p>{{ $model['address'] }}</p>
                         </td>
                         {{-- <td class="px-6 py-4">
                             {!! nl2br($model['facility']) !!}

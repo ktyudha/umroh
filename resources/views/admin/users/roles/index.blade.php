@@ -44,10 +44,10 @@
                             <td class="px-6 py-4 capitalize">
                                 {{ $role->name }}
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 whitespace-nowrap">
                                 {{ $role->users_count }} users
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{ route('admin.permissions.index', [$role->id]) }}" class="hover:text-primary">
                                     {{ $role->name === 'superadmin' ? 'All' : $role->permissions_count }}
                                     permissions
