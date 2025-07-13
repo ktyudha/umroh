@@ -44,7 +44,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Name of pilgrimage batch" value="{{ old('name') ?: @$model->name }}" required />
             </div>
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid lg:grid-cols-3 grid-cols-1 gap-6">
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Code
@@ -75,11 +75,13 @@
                     @php
                         $trasnportationClasses = ['economy', 'business', 'executive', 'vip'];
                     @endphp
+
                     <select id="class" name="class"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         <option disabled @if (!old('class')) selected @endif>Choose a class</option>
                         @foreach ($trasnportationClasses as $key => $class)
-                            <option value="{{ $class }}" {{ @$model->class == $class ? 'selected' : '' }}>
+                            <option value="{{ $class }}"
+                                {{ strtolower(@$model->class) == $class ? 'selected' : '' }}>
                                 {{ ucfirst($class) }}
                             </option>
                         @endforeach

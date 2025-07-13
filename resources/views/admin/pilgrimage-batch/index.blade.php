@@ -47,21 +47,21 @@
             <tbody>
                 @foreach ($models as $key => $model)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 min-w-60">
                             <h5 class="font-medium text-black dark:text-white">{{ $model['name'] }}</h5>
                             {{ $model['description'] }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $model['departure_date'] }}
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $model['departure_date']->format('d M Y') }}
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $model['return_date'] }}
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ $model->return_date->format('d M Y') }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $model['duration'] }} Days
                         </td>
-                        <td class="px-6 py-4">
-                            {{ $model['price'] }}
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            {{ formatRupiah($model['price']) }}
                         </td>
                         <td class="my-auto mx-auto">
                             <div class="flex gap-4 justify-center">

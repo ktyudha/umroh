@@ -49,7 +49,7 @@
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name" value="{{ old('name') ?: $user->name }}" required />
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                 <div class="mb-5">
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Username
@@ -71,7 +71,8 @@
             </div>
             @if (auth()->user()->id === $user->id or auth()->user()->hasRole('superadmin'))
                 <hr>
-                <div class="grid {{ auth()->user()->id === $user->id ? 'grid-cols-3' : 'grid-cols-2' }}  gap-4">
+                <div
+                    class="grid {{ auth()->user()->id === $user->id ? 'lg:grid-cols-3' : 'lg:grid-cols-2' }} grid-cols-1  gap-4">
                     @if (auth()->user()->id === $user->id)
                         <div class="mb-5">
                             <label class="mb-3 block text-sm font-medium text-black dark:text-white">
@@ -103,7 +104,7 @@
                     </div>
                 </div>
             @endif
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                 <div class="mb-5 form-group">
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Image

@@ -53,7 +53,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="grid grid-cols-2 gap-6">
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-6">
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Date of Departure

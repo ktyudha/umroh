@@ -69,3 +69,54 @@ function remove_emojis($string)
 {
     return preg_replace('/[\x{1F300}-\x{1FAFF}\x{1F1E6}-\x{1F1FF}]/u', '', $string);
 }
+
+if (!function_exists('read_more')) {
+    /**
+     * Site URL
+     *
+     * Create a local URL based on your basepath. Segments can be passed via the
+     * first parameter either as a string or an array.
+     *
+     * @param	string	$uri
+     * @param	string	$protocol
+     * @return	string
+     */
+    function read_more($string, $limit = 100)
+    {
+        $string = trim(preg_replace('/\s+/', ' ', $string));
+        $string = trim(preg_replace('/\t+/', '', $string));
+        $d = array('&nbsp;', '&quot;', '&amp;', '&ldquo;', '&rdquo;');
+        $string = str_replace($d, ' ', $string); // Hilangkan karakter di array $d
+        $length = strlen(strip_tags($string));
+        if ($length > $limit) {
+            //  $isi_string = htmlentities(strip_tags($string)); // membuat paragraf pada isi berita dan mengabaikan tag html
+            $isi_string = strip_tags($string); // membuat paragraf pada isi berita dan mengabaikan tag html&rdquo;
+            $isi = substr($isi_string, 0, $limit); // ambil sebanyak 220 karakter
+            $isi = substr($isi_string, 0, strrpos($isi, " ")) . ' ... '; // potong per spasi kalimat
+
+            return $isi;
+        } else {
+            return strip_tags($string);
+        }
+    }
+}
+if (!function_exists('load_more')) {
+    function load_more($string, $limit = 200)
+    {
+        $string = trim(preg_replace('/\s+/', ' ', $string));
+        $string = trim(preg_replace('/\t+/', '', $string));
+        $d = array('&nbsp;', '&quot;', '&amp;', '&ldquo;', '&rdquo;');
+        // $string = str_replace($d,' ',$string);// Hilangkan karakter di array $d
+        $length = strlen(strip_tags($string));
+        if ($length > $limit) {
+            //  $isi_string = htmlentities(strip_tags($string)); // membuat paragraf pada isi berita dan mengabaikan tag html
+            // $isi_string = strip_tags($string); // membuat paragraf pada isi berita dan mengabaikan tag html&rdquo;
+            $isi = substr($string, 0, $limit); // ambil sebanyak 200 karakter
+            $isi = substr($string, 0, strrpos($isi, " ")) . ' ... '; // potong per spasi kalimat
+
+            return $isi;
+        } else {
+            return strip_tags($string);
+        }
+    }
+}

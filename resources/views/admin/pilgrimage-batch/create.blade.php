@@ -53,7 +53,7 @@
                     placeholder="Name of pilgrimage batch" value="{{ old('name') }}" required />
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid lg:grid-cols-2 grid-cols-1 gap-4">
                 <div>
                     <label class="mb-3 block text-sm font-medium text-black dark:text-white">
                         Hotels
